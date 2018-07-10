@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    background: whitesmoke;
+    min-width: 1100px;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 6fr 1fr 1fr 1fr 1fr 1fr;
+    background: #323535;
+    width: 100%;
+    color: white;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.logo {
+    height: 100%;
+    width: 300px;
+    padding-left: 10%;
+    padding-top: 2;
+}
+
+.btn {
+    font-family: "Calibri";
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    padding-top: 19;
+    font-size: 17;
+    white-space: nowrap
+}
+
+.btn:hover {
+    background-color: #3c4241;
+    color: white;
+}
+
+.coolbtn{
+    border-radius: 5px;
+    border: solid;
+    border-color: #45600b;
+    background: #45600b;
+    padding: 7px 5px 9px 5px;
+    margin: 13px 12px 16px 10px;
+}
+
+.coolbtn:hover {
+    background: #384c08;
+    border-color: #384c08;
+}
+
+.ad {
+    font-family: "Calibri";
+    color: white;
+    background-image: url(res/ad-background2.PNG);
+    text-align: center;
+    font-size: 170%;
+    padding: 5%;
+}
+
+h2 {
+    font-size: 250%;
+    margin: 0;
+}
+
+.signUpAd {
+    text-decoration: none;
+    border: solid;
+    border-color: #323535;
+    background: #323535;
+    padding: 15 50;
+    border-radius: 20px;
+    color: white;
+    font-size: 40;
+}
+
+.signUpAd:hover {
+    background-image: url("res/button-background.PNG");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: white;
+    border-color: black;
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
