@@ -95,9 +95,6 @@ h2 {
     height: 25%;
     justify-items: center;
     overflow: hidden;
-    position: absolute;
-    min-width: inherit;
-    bottom: 0;
 }
 
 #footerlogo {
