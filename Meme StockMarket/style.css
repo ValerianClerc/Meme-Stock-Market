@@ -51,7 +51,7 @@ body {
     border-color: #384c08;
 }
 
-.ad {
+#ad {
     font-family: "Calibri";
     color: white;
     background-image: url(res/ad-background2.PNG);
