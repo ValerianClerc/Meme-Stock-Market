@@ -1,3 +1,7 @@
+html {
+    font-family: "Calibri";
+}
+
 body {
     margin: 0;
     background: whitesmoke;
@@ -23,7 +27,6 @@ body {
 }
 
 .btn {
-    font-family: "Calibri";
     text-decoration: none;
     color: white;
     text-align: center;
@@ -52,7 +55,6 @@ body {
 }
 
 #ad {
-    font-family: "Calibri";
     color: white;
     background-image: url(res/ad-background2.PNG);
     text-align: center;
@@ -105,7 +107,6 @@ h2 {
 }
 
 #footer p {
-    font-family: "Calibri";
     font-size: 17;
     color: darkgrey;
 }
