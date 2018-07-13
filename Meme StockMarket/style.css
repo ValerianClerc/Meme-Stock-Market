@@ -6,6 +6,7 @@ body {
     margin: 0;
     background: whitesmoke;
     min-width: 1100px;
+    min-height: 500px;
     position: relative;
 }
 
@@ -64,7 +65,7 @@ body {
     padding: 5%;
 }
 
-h2 {
+#ad h2 {
     font-size: 250%;
     margin: 0;
 }
@@ -124,5 +125,55 @@ h2 {
 }
 
 #footer a:hover {
-    color: darkgrey;
+    color: #578D3B;
 }
+
+#login {
+    text-align: center;
+    font-size: 250%;
+    min-height: inherit;
+    color: #323535;
+}
+
+#login input {
+    margin-bottom: 1%;
+    width: 25%;
+    min-width: 300px;
+    height: 7%;
+    min-height: 40px;
+    border-radius: 10px;
+    font-size: 45%;
+    background: #323535;
+    border: none;
+}
+
+::placeholder {
+    color: darkgray;
+    opacity: 1;
+}
+
+#login button {
+    width: 20%;
+    height: 7%;
+    min-width: 100px;
+    min-height: 40px;
+    background: -webkit-linear-gradient(top, #578D3B,
+    #384c08);
+    border: none;
+    color: white;
+    border-radius: 7px;
+    font-size: 45%;
+    margin-top: 2%;
+}
+
+#login button:hover {
+    background: #384c08;
+}
+
+
+
+
+
+
+
+
