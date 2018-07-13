@@ -5,7 +5,7 @@ html {
 body {
     margin: 0;
     background: whitesmoke;
-    min-width: 1100px;
+    min-width: 700px;
     min-height: 500px;
     position: relative;
 }
