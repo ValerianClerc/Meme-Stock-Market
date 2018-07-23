@@ -2,7 +2,7 @@ var express     = require('express'),
     mongoose    = require('mongoose'),
     bodyParser  = require('body-parser')
 
-    var faker = require('faker');
+    // var faker = require('faker');
 
 var app = express();
 
