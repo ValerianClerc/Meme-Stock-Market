@@ -56,12 +56,12 @@ app.get('/signup', function (req, res) {
     res.render('signup');
 });
 
-app.get('/topMemes', function (req, res) {
+app.get('/memes', function (req, res) {
     Meme.find({}, function (err, memes) {
         if (err) {
             console.log(err);
         } else {
-            res.render('topMemes', {memes: memes});
+            res.render('memes', {memes: memes});
         }
     });
 });

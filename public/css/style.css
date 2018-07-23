@@ -58,30 +58,6 @@ body {
     border-color: #384c08;
 }
 
-#ad {
-    color: white;
-    background-image: url("res/ad-background2.PNG");
-    text-align: center;
-    font-size: 170%;
-    padding: 5%;
-}
-
-#ad h2 {
-    font-size: 250%;
-    margin: 0;
-}
-
-#signUpAd {
-    text-decoration: none;
-    border: solid;
-    border-color: #323535;
-    background: #323535;
-    padding: 15 50;
-    border-radius: 20px;
-    color: white;
-    font-size: 40;
-}
-
 #signUpAd:hover {
     background-image: url("res/button-background.PNG");
     background-position: center;
@@ -94,7 +70,7 @@ body {
 
 #main {
     margin: 5% 10%;
-    margin-bottom: -50px;
+    margin-bottom: -1px;
     height: 100%;
 }
 

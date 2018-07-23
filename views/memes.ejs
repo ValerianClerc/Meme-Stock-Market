@@ -1,0 +1,15 @@
+<% include partials/header %>
+
+    <link rel="stylesheet" href="/css/memes.css" type="text/css">
+
+    <div id="main">
+    <h1>This is where the Meme stuff will be </h1>
+    <% memes.forEach(function (meme) { %>
+        <div class="meme">
+        <p><%=meme.title%></p>
+        <img src="<%=meme.imgURL%>">
+        </div>
+    <% }); %>
+    </div>
+
+<% include partials/footer %>
