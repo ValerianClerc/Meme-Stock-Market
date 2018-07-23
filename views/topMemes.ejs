@@ -5,7 +5,8 @@
     <title>Top Memes - Meme StockMarket</title>
 
     <link href="css/style.css" rel="stylesheet" type="text/css">
-
+    <link rel="stylesheet" href="/css/topMemes.css" type="text/css">
+    
 </head>
 <body>
 
@@ -17,8 +18,14 @@
         <a class="btn" id="coolbtn" href="signup">Sign Up</a>
     </div>
 
-    <div>
-    <h1>This is where the Top Meme stuff will be </h1><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div id="main">
+    <h1>This is where the Top Meme stuff will be </h1>
+    <% memes.forEach(function (meme) { %>
+        <div class="meme">
+        <p><%=meme.title%></p>
+        <img src="<%=meme.imgURL%>">
+        </div>
+    <% }); %>
     </div>
 
     <div id="footer">

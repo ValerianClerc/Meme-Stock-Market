@@ -1,5 +1,6 @@
 html {
     font-family: "Calibri";
+    margin-bottom: 0;
 }
 
 body {
@@ -89,6 +90,12 @@ body {
     background-color: white;
     border-color: black;
     color: black;
+}
+
+#main {
+    margin: 5% 10%;
+    margin-bottom: -50px;
+    height: 100%;
 }
 
 #footer {
