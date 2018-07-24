@@ -1,6 +1,7 @@
 var express     = require('express'),
     mongoose    = require('mongoose'),
-    bodyParser  = require('body-parser')
+    bodyParser  = require('body-parser'),
+    Meme        = require('./models/meme')
 
     // var faker = require('faker');
 
@@ -14,14 +15,6 @@ app.use(bodyParser.urlencoded({extended : true}));
 // MongoDB set-up
 mongoose.connect('mongodb://localhost:27017/meme-stock-market', {useNewUrlParser:true});
 
-var memeSchema = new mongoose.Schema({
-    title: String,
-    imgURL: String,
-    timeStamp: String,
-    author: String
-});
-
-var Meme = mongoose.model("Meme", memeSchema);
 
 // Meme.create({
 //     title: faker.commerce.productName(),
