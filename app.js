@@ -24,8 +24,25 @@ var storage = multer.diskStorage({
 
 // img init upload
 var upload = multer({
-    storage: storage
+    storage: storage,
+    limits: {fileSize: 1000000},
+    fileFilter: function (req, file, cb) {
+        checkFileType(file, cb);
+    }
 }).single('newMeme');
+
+function checkFileType (file, cb) {
+    // Allowed extensions
+    var filetypes = /jpeg|jpg|png|gif/;
+    // check extensions
+    var extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    // check mime type
+    var mimetype = filetypes.test(file.mimetype);
+    if (extname && extname) {
+        return cb(null, true);
+    }
+    cb('Error: Images only');
+}
 
 // app set-up
 app.set('view engine', 'ejs');
@@ -139,8 +156,9 @@ app.post('/memes', function (req, res) {
         if (err) {
             res.render('newMeme', {msg : err});
         } else {
-            console.log(req.file);
-            console.log(typeof req.file);
+            if(req.file == undefined) {
+                res.render('newMeme', {msg: 'Error: No file selected'});
+            }
             Meme.create({
                 title: req.body.title,
                 timeStamp: Date.now(),
