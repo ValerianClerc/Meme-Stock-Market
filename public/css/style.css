@@ -58,6 +58,8 @@ body {
     border-color: #384c08;
 }
 
+
+
 #signUpAd:hover {
     background-image: url("res/button-background.PNG");
     background-position: center;
@@ -85,7 +87,6 @@ body {
     overflow: hidden;
     max-height: 100px;
     position: absolute;
-    bottom: 0;
 }
 
 #footerlogo {

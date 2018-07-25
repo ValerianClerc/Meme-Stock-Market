@@ -1,16 +1,48 @@
-var express     = require('express'),
-    mongoose    = require('mongoose'),
-    bodyParser  = require('body-parser'),
-    Meme        = require('./models/meme')
+var express               = require('express'),
+    mongoose              = require('mongoose'),
+    bodyParser            = require('body-parser'),
+    Meme                  = require('./models/meme'),
+    User                  = require('./models/user')
+    passport              = require('passport'),
+    LocalStrategy         = require('passport-local'),
+    passportLocalMongoose = require('passport-local-mongoose'),
+    fs                    = require('fs'),
+    multer                = require('multer'),
+    path                  = require('path');
 
     // var faker = require('faker');
 
 var app = express();
 
+// img upload storage engine
+var storage = multer.diskStorage({
+    destination: './public/uploads',
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+// img init upload
+var upload = multer({
+    storage: storage
+}).single('newMeme');
+
 // app set-up
-app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
+app.use(require('express-session')({
+    secret: 'Memes are better than money',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(express.static(__dirname + '/public'));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(bodyParser.urlencoded({extended : true}));
+
+
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // MongoDB set-up
 mongoose.connect('mongodb://localhost:27017/meme-stock-market', {useNewUrlParser:true});
@@ -24,6 +56,17 @@ mongoose.connect('mongodb://localhost:27017/meme-stock-market', {useNewUrlParser
 // }, function (err, meme){
 //     console.log(meme);
 // });
+
+//MIDDLEWARE
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
+}
+
+// ROUTES
 
 app.get('/', function (req, res) {
     res.render('index');
@@ -45,8 +88,36 @@ app.get('/login', function (req, res) {
     res.render('login');
 });
 
+app.post('/login', passport.authenticate('local', {
+    successRedirect: '/secret',
+    failureRedirect: '/login'
+}), function (req, res) {
+
+});
+
 app.get('/signup', function (req, res) {
-    res.render('signup');
+    res.render('signup', {err : undefined});
+});
+
+app.post('/signup', function (req, res) {
+    User.register(new User({username: req.body.username, email: req.body.email}), req.body.password, function (err, user) {
+        if (err) {
+            console.log(err);
+            return res.render('signup', {err : err});
+        }
+        passport.authenticate('local')(req, res, function () {
+            res.redirect('/');
+        });
+    });
+});
+
+app.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
+})
+
+app.get('/secret', isLoggedIn, function (req, res) {
+    res.send('SECRET');
 });
 
 app.get('/memes', function (req, res) {
@@ -55,6 +126,33 @@ app.get('/memes', function (req, res) {
             console.log(err);
         } else {
             res.render('memes', {memes: memes});
+        }
+    });
+});
+
+app.get('/memes/new', isLoggedIn, function (req, res) {
+    res.render('newMeme');
+});
+
+app.post('/memes', function (req, res) {
+    upload(req, res, (err) => {
+        if (err) {
+            res.render('newMeme', {msg : err});
+        } else {
+            console.log(req.file);
+            console.log(typeof req.file);
+            Meme.create({
+                title: req.body.title,
+                timeStamp: Date.now(),
+                // author: ,
+                imgPath: '/uploads' + '/' + req.file.filename
+            }, function (err, meme) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.redirect('/memes');
+                }
+            });
         }
     });
 });

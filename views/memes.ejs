@@ -3,13 +3,16 @@
     <link rel="stylesheet" href="/css/memes.css" type="text/css">
 
     <div id="main">
-    <h1>This is where the Meme stuff will be </h1>
-    <% memes.forEach(function (meme) { %>
-        <div class="meme">
-        <p><%=meme.title%></p>
-        <img src="<%=meme.imgURL%>">
-        </div>
-    <% }); %>
+    <div id="grid">
+        <% memes.forEach(function (meme) { %>
+            <% if (meme.imgPath != undefined) { %>
+                <div class="meme">
+                <p><%=meme.title%></p>
+                <img src="..<%= meme.imgPath%>">
+                </div>
+            <% } %>
+        <% }); %>
+    </div>
     </div>
 
 <% include partials/footer %>
