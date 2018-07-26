@@ -75,7 +75,8 @@ router.post('/', isLoggedIn, function (req, res) {
                     id: req.user._id,
                     username: req.user.username
                 },
-                imgPath: '/uploads' + '/' + req.file.filename
+                imgPath: '/uploads' + '/' + req.file.filename,
+                description: req.body.description
             }, function (err, post) {
                 if (err) {
                     console.log(err);
@@ -99,5 +100,17 @@ router.post('/', isLoggedIn, function (req, res) {
         }
     });
 });
+
+router.get('/:id', function (req, res) {
+    Post.findOne({_id : req.params.id}, function (err, post) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(post);
+            res.render('specificPost', {post : post});
+        }
+    });
+});
+
 
 module.exports = router;

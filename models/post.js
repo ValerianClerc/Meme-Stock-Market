@@ -14,7 +14,8 @@ var postSchema = new mongoose.Schema({
         },
         username: String
     },
-    imgPath: String
+    imgPath: String,
+    description: String
 });
 
 module.exports = mongoose.model("Post", postSchema);

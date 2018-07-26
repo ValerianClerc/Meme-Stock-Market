@@ -51,21 +51,7 @@ app.use(profileRoutes);
 
 
 // MongoDB set-up
-mongoose.connect('mongodb://localhost:27017/meme-stock-market', {useNewUrlParser:true});
-
-
-// Meme.create({
-//     title: faker.commerce.productName(),
-//     imgURL: faker.image.avatar(),
-//     timeStamp: faker.date.past(),
-//     author: faker.internet.userName()
-// }, function (err, meme){
-//     console.log(meme);
-// });
-
-
-
-
+mongoose.connect('mongodb://localhost:27017/beta-buddy', {useNewUrlParser:true});
 
 app.listen(3000, function () {
     console.log('Server started on port 3000');
