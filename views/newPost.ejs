@@ -1,11 +1,11 @@
 <% include partials/header %>
 
 <div id="main">
-    <h1>Submit new meme</h1>
+    <h1>Submit new post</h1>
     <%= typeof msg != 'undefined' ? msg : '' %>
-    <form action="/memes" method="POST" enctype="multipart/form-data">
+    <form action="/posts" method="POST" enctype="multipart/form-data">
         <input type="text" name="title" placeholder="Title">
-        <input type="file" name="newMeme" accept="image/jpg">
+        <input type="file" name="newPost" accept="image/jpg">
         <button>Submit!</button>
     </form>
 </div>

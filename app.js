@@ -1,7 +1,7 @@
 var express               = require('express'),
     mongoose              = require('mongoose'),
     bodyParser            = require('body-parser'),
-    Meme                  = require('./models/meme'),
+    Post                  = require('./models/post'),
     User                  = require('./models/user')
     passport              = require('passport'),
     LocalStrategy         = require('passport-local'),
@@ -29,7 +29,7 @@ var upload = multer({
     fileFilter: function (req, file, cb) {
         checkFileType(file, cb);
     }
-}).single('newMeme');
+}).single('newPost');
 
 function checkFileType (file, cb) {
     // Allowed extensions
@@ -47,7 +47,7 @@ function checkFileType (file, cb) {
 // app set-up
 app.set('view engine', 'ejs');
 app.use(require('express-session')({
-    secret: 'Memes are better than money',
+    secret: 'Climbing is life',
     resave: false,
     saveUninitialized: false
 }));
@@ -127,7 +127,7 @@ app.post('/signup', function (req, res) {
     User.register(new User({
         username: req.body.username,
         email: req.body.email,
-        memes: []
+        posts: []
     }),
         req.body.password, function (err, user) {
         if (err) {
@@ -151,14 +151,14 @@ app.get('/profile/:id', function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            console.log(user.memes);
-    
-            Meme.find({'_id' : { $in: user.memes}}, function (err, foundMemes) {
+            console.log(user.posts);
+
+            Post.find({'_id' : { $in: user.posts}}, function (err, foundPosts) {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log(foundMemes);
-                    return res.render('profile', {user: user, memes : foundMemes});
+                    console.log(foundPosts);
+                    return res.render('profile', {user: user, posts : foundPosts});
 
                 }
 
@@ -172,29 +172,29 @@ app.get('/secret', isLoggedIn, function (req, res) {
     res.send('SECRET');
 });
 
-app.get('/memes', function (req, res) {
-    Meme.find({}, function (err, memes) {
+app.get('/posts', function (req, res) {
+    Post.find({}, function (err, posts) {
         if (err) {
             console.log(err);
         } else {
-            res.render('memes', {memes: memes});
+            res.render('posts', {posts: posts});
         }
     });
 });
 
-app.get('/memes/new', isLoggedIn, function (req, res) {
-    res.render('newMeme');
+app.get('/posts/new', isLoggedIn, function (req, res) {
+    res.render('newPost');
 });
 
-app.post('/memes', isLoggedIn, function (req, res) {
+app.post('/posts', isLoggedIn, function (req, res) {
     upload(req, res, (err) => {
         if (err) {
-            res.render('newMeme', {msg : err});
+            res.render('newPost', {msg : err});
         } else {
             if(req.file == undefined) {
-                return res.render('newMeme', {msg: 'Error: No file selected'});
+                return res.render('newPost', {msg: 'Error: No file selected'});
             }
-            Meme.create({
+            Post.create({
                 title: req.body.title,
                 timeStamp: Date.now(),
                 author: {
@@ -202,22 +202,22 @@ app.post('/memes', isLoggedIn, function (req, res) {
                     username: req.user.username
                 },
                 imgPath: '/uploads' + '/' + req.file.filename
-            }, function (err, meme) {
+            }, function (err, post) {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log(meme);
+                    console.log(post);
                     User.findOne({username : req.user.username}, function (err, foundUser) {
                         if (err) {
                             console.log(err);
                         } else {
                             console.log(foundUser);
-                            console.log(foundUser.memes);
-                            console.log('Meme ID: ' + meme._id)
-                            foundUser.memes.push(meme._id);
-                            console.log(foundUser.memes);
+                            console.log(foundUser.posts);
+                            console.log('Post ID: ' + post._id)
+                            foundUser.posts.push(post._id);
+                            console.log(foundUser.posts);
                             foundUser.save();
-                            res.redirect('/memes');
+                            res.redirect('/posts');
                         }
                     });
                 }

@@ -7,13 +7,13 @@
     margin-bottom: 200px;
 }
 
-#main .meme {
+#main .post {
     /* width: 30%; */
     float: left;
     margin: 1.66%;
 }
 
-#main .meme img {
+#main .post img {
     width: 100%;
     /* height: 100px; */
 }

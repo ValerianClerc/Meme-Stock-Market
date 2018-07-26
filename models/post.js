@@ -4,7 +4,7 @@ var User = require('./user');
 
 // Meme schema
 
-var memeSchema = new mongoose.Schema({
+var postSchema = new mongoose.Schema({
     title: String,
     timeStamp: String,
     author: {
@@ -17,4 +17,4 @@ var memeSchema = new mongoose.Schema({
     imgPath: String
 });
 
-module.exports = mongoose.model("Meme", memeSchema);
+module.exports = mongoose.model("Post", postSchema);
