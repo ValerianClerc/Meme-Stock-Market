@@ -1,5 +1,5 @@
 {
-  "name": "meme-stock-market",
+  "name": "beta-buddy",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ValerianClerc/meme-stock-market.git"
+    "url": "git+https://github.com/ValerianClerc/beta-buddy.git"
   },
   "author": "Valerian Clerc",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ValerianClerc/meme-stock-market/issues"
+    "url": "https://github.com/ValerianClerc/beta-buddy/issues"
   },
-  "homepage": "https://github.com/ValerianClerc/meme-stock-market#readme",
+  "homepage": "https://github.com/ValerianClerc/beta-buddy#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
