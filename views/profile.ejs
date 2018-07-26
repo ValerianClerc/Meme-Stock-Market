@@ -2,11 +2,11 @@
 
     <div id="main">
     <h1>This is where <%= user.username %>'s Profile will be </h1>
-    <h2>Memes:</h2>
+    <h2>Posts:</h2>
     <ul>
-        <% if (typeof user != 'undefined' || typeof memes != 'undefined') { %>
-        <% memes.forEach(function (meme) { %>
-            <li><img src="..<%= meme.imgPath%>"></li>
+        <% if (typeof user != 'undefined' || typeof posts != 'undefined') { %>
+        <% posts.forEach(function (post) { %>
+            <li><img src="..<%= post.imgPath%>"></li>
         <% }); %>
         <% } %>
     </ul>

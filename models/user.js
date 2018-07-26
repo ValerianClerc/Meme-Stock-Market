@@ -1,13 +1,13 @@
 var mongoose = require('mongoose');
     passportLocalMongoose = require('passport-local-mongoose')
-    Meme = require('./meme')
+    Post = require('./post')
 
 var userSchema = new mongoose.Schema({
     email: String,
     password: String,
-    memes: [{
+    posts: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Meme'
+        ref: 'Post'
     }]
 });
 
