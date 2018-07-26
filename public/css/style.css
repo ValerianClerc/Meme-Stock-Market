@@ -9,19 +9,173 @@ body {
     min-width: 700px;
     min-height: 500px;
     position: relative;
+    height: 100%;
 }
 
-#header {
-    display: grid;
-    grid-template-columns: 6fr 1fr 1fr 1fr 1fr 1fr;
-    background: #323535;
-    width: 100%;
-    color: white;
+nav {
     margin: 0;
-    padding: 0;
-    overflow: hidden;
+    min-width: 300px;
 }
 
+.navbar-default {
+    background-color: #323535;
+    border-radius: 0px;
+    border: 0;
+}
+
+.navbar a {
+    color: white!important;
+}
+
+.navbar a:hover {
+    background-color: #3c4241 !important;
+}
+
+.navbar a:focus {
+    background-color: #3c4241 !important;
+}
+
+.navbar a:active {
+    background-color: #3c4241 !important;
+}
+
+.navbar a:visited {
+    background-color: #3c4241 !important;
+}
+
+.navbar-header a:hover {
+    background-color: #323535 !important;
+}
+
+.navbar-right .category-elements:hover {
+    background-color: #3c4241 !important;
+}
+
+.navbar-form input {
+    background-color: #3c4241;
+    border-color: #45600b;
+}
+
+.navbar-form input:focus {
+    background-color: #3c4241;
+    border-color: #45600b;
+    color: white;
+}
+
+.navbar-form button {
+    background-color: #45600b;
+    border-color: #45600b;
+    color: white;
+}
+
+.navbar-form button:hover {
+    background-color: #384c08;
+    border-color: white;
+    color: white;
+}
+
+.navbar-form button:active {
+    background-color: #384c08 !important;
+    border-color: white !important;
+    color: white!important;
+}
+
+.dropdown-menu {
+    background-color: #323535;
+}
+
+.collapsed {
+    background-color: #323535;
+}
+
+.navbar-brand {
+    display: inline-block;
+    margin-top: -32px;
+
+}
+
+.navbar-brand img{
+    display: inline-block;
+    height:200%;
+    margin-top: -10px;
+}
+
+.navbar-brand h1 {
+    display: inline-block;
+    max-height: 100%;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+}
+
+.navbar-default .navbar-toggle:hover {
+    background-color: #45600b;
+    border-color: white;
+}
+
+.navbar-default .navbar-toggle:focus {
+    background-color: #45600b;
+    border-color: white;
+}
+
+@media (min-width: 13000px){
+    .navbar-expand-custom {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+    .navbar-expand-custom .navbar-nav {
+        flex-direction: row;
+    }
+    .navbar-expand-custom .navbar-nav .nav-link {
+        padding-right: .5rem;
+        padding-left: .5rem;
+    }
+    .navbar-expand-custom .navbar-collapse {
+        display: flex!important;
+    }
+    .navbar-expand-custom .navbar-toggler {
+        display: none;
+    }
+}
+
+@media (max-width: 972px) {
+  .navbar-header {
+      float: none;
+  }
+  .navbar-left,.navbar-right {
+      float: none !important;
+  }
+  .navbar-toggle {
+      display: block;
+  }
+  .navbar-collapse {
+      border-top: 1px solid transparent;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+  .navbar-fixed-top {
+      top: 0;
+      border-width: 0 0 1px;
+  }
+  .navbar-collapse.collapse {
+      display: none!important;
+  }
+  .navbar-nav {
+      float: none!important;
+      margin-top: 7.5px;
+  }
+  .navbar-nav>li {
+      float: none;
+  }
+  .navbar-nav>li>a {
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+  .collapse.in{
+      display:block !important;
+  }
+}
 #logo {
     height: 100%;
     width: 300px;
@@ -58,7 +212,9 @@ body {
     border-color: #384c08;
 }
 
-
+#signUpAd {
+    font-size: 40px;
+}
 
 #signUpAd:hover {
     background-image: url("res/button-background.PNG");
@@ -68,15 +224,17 @@ body {
     background-color: white;
     border-color: black;
     color: black;
+    font-size: 40px;
 }
 
 #main {
-    margin: 5% 10%;
-    margin-bottom: -1px;
+    margin: 100px 10%;
+    margin-bottom: -50px;
     height: 100%;
 }
 
 #footer {
+    bottom:0;
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 2fr;
     color: white;
