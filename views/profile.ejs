@@ -1,0 +1,15 @@
+<% include partials/header %>
+
+    <div id="main">
+    <h1>This is where <%= user.username %>'s Profile will be </h1>
+    <h2>Memes:</h2>
+    <ul>
+        <% if (typeof user != 'undefined' || typeof memes != 'undefined') { %>
+        <% memes.forEach(function (meme) { %>
+            <li><img src="..<%= meme.imgPath%>"></li>
+        <% }); %>
+        <% } %>
+    </ul>
+    </div>
+
+<% include partials/footer %>

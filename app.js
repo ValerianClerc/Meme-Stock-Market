@@ -61,6 +61,8 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+
+
 // MongoDB set-up
 mongoose.connect('mongodb://localhost:27017/meme-stock-market', {useNewUrlParser:true});
 
@@ -82,6 +84,12 @@ function isLoggedIn(req, res, next) {
     }
     res.redirect('/login');
 }
+
+// middleware to pass user into each route
+app.use(function (req, res, next) {
+    res.locals.currentUser = req.user;
+    next();
+});
 
 // ROUTES
 
@@ -116,7 +124,12 @@ app.get('/signup', function (req, res) {
 });
 
 app.post('/signup', function (req, res) {
-    User.register(new User({username: req.body.username, email: req.body.email}), req.body.password, function (err, user) {
+    User.register(new User({
+        username: req.body.username,
+        email: req.body.email,
+        memes: []
+    }),
+        req.body.password, function (err, user) {
         if (err) {
             console.log(err);
             return res.render('signup', {err : err});
@@ -131,6 +144,29 @@ app.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
 })
+
+app.get('/profile/:id', function (req, res) {
+    console.log(req.params);
+    User.findOne({username : req.params.id}, function (err, user) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(user.memes);
+    
+            Meme.find({'_id' : { $in: user.memes}}, function (err, foundMemes) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(foundMemes);
+                    return res.render('profile', {user: user, memes : foundMemes});
+
+                }
+
+            });
+
+        }
+    });
+});
 
 app.get('/secret', isLoggedIn, function (req, res) {
     res.send('SECRET');
@@ -150,24 +186,40 @@ app.get('/memes/new', isLoggedIn, function (req, res) {
     res.render('newMeme');
 });
 
-app.post('/memes', function (req, res) {
+app.post('/memes', isLoggedIn, function (req, res) {
     upload(req, res, (err) => {
         if (err) {
             res.render('newMeme', {msg : err});
         } else {
             if(req.file == undefined) {
-                res.render('newMeme', {msg: 'Error: No file selected'});
+                return res.render('newMeme', {msg: 'Error: No file selected'});
             }
             Meme.create({
                 title: req.body.title,
                 timeStamp: Date.now(),
-                // author: ,
+                author: {
+                    id: req.user._id,
+                    username: req.user.username
+                },
                 imgPath: '/uploads' + '/' + req.file.filename
             }, function (err, meme) {
                 if (err) {
                     console.log(err);
                 } else {
-                    res.redirect('/memes');
+                    console.log(meme);
+                    User.findOne({username : req.user.username}, function (err, foundUser) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            console.log(foundUser);
+                            console.log(foundUser.memes);
+                            console.log('Meme ID: ' + meme._id)
+                            foundUser.memes.push(meme._id);
+                            console.log(foundUser.memes);
+                            foundUser.save();
+                            res.redirect('/memes');
+                        }
+                    });
                 }
             });
         }
