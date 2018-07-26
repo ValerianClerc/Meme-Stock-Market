@@ -2,7 +2,11 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user'),
     Post = require('../models/post'),
-    multer = require('multer');
+    multer = require('multer'),
+    methodOverride = require('method-override'),
+    fs                    = require('fs'),
+    bodyParser =     require('body-parser');
+
 //MIDDLEWARE
 
 function isLoggedIn(req, res, next) {
@@ -55,11 +59,12 @@ router.get('/', function (req, res) {
     });
 });
 
-// Posts new
+// route to get to 'new post' form
 router.get('/new', isLoggedIn, function (req, res) {
     res.render('newPost');
 });
 
+// route to post 'new post' form
 router.post('/', isLoggedIn, function (req, res) {
     upload(req, res, (err) => {
         if (err) {
@@ -86,13 +91,9 @@ router.post('/', isLoggedIn, function (req, res) {
                         if (err) {
                             console.log(err);
                         } else {
-                            console.log(foundUser);
-                            console.log(foundUser.posts);
-                            console.log('Post ID: ' + post._id)
                             foundUser.posts.push(post._id);
-                            console.log(foundUser.posts);
                             foundUser.save();
-                            res.redirect('/posts');
+                            res.redirect('/posts/' + post._id);
                         }
                     });
                 }
@@ -101,13 +102,71 @@ router.post('/', isLoggedIn, function (req, res) {
     });
 });
 
+// Accessing specific post
 router.get('/:id', function (req, res) {
     Post.findOne({_id : req.params.id}, function (err, post) {
         if (err) {
             console.log(err);
+            res.render('error');
         } else {
-            console.log(post);
-            res.render('specificPost', {post : post});
+            res.render('specificPost', {post : post, currentUser : req.user});
+        }
+    });
+});
+
+// Accessing edit form
+router.get('/:id/edit', isLoggedIn, function (req, res) {
+    Post.findOne({_id : req.params.id}, function (err, post) {
+        if (err) {
+            console.log(err);
+        } else {
+            User.findOne({_id : post.author.id}, function (err, user) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    if (req.user.username == user.username){
+                        res.render('editPost', {post : post, user : user});
+                    } else {
+                        res.render('specificPost', {post : post, user : user, msg : 'SORRY, YOU CAN\'T EDIT A POST THAT ISN\'T YOURS'})
+                    }
+                }
+            });
+        }
+    });
+});
+
+// Put request for editing post
+router.put('/:id', isLoggedIn, function (req, res) {
+    Post.findByIdAndUpdate(req.params.id, req.body.post, function (err, post) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect('/posts/' + req.params.id);
+        }
+    })
+});
+
+// Delete request for post
+router.delete('/:id', isLoggedIn, function (req, res) {
+    Post.findOne({'_id' : req.params.id}, function (err, post) {
+        if (post.author.username == req.user.username) {
+            // removing image from storage
+            var delPath = __dirname + post.imgPath;
+            delPath = delPath.replace('routes', 'public');
+            fs.unlink(delPath, function (err) {
+                if (err) {
+                    console.log(err);
+                    throw err;
+                } else {
+                    console.log('WORKED!');
+                    // removing post from DB
+                    post.remove();
+                    res.redirect('/posts');
+                }
+            })
+
+        } else {
+            return res.redirect('/posts');
         }
     });
 });

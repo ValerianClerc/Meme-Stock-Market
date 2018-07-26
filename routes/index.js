@@ -77,4 +77,6 @@ router.get('/secret', isLoggedIn, function (req, res) {
     res.send('SECRET');
 });
 
+
+
 module.exports = router;

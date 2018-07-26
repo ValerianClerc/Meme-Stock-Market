@@ -2,7 +2,14 @@
 
 
     <div id="main">
+        <%= typeof msg != 'undefined' ? msg : '' %>
         <h3><%=post.title%></h3>
-        <img src="..<%= post.imgPath%>">
+        <img src="../..<%= post.imgPath%>">
         <p><%= post.description %></p>
+        <% if(typeof currentUser != 'undefined' && post.author.username == currentUser.username) { %>
+            <a href="/posts/<%= post._id%>/edit">EDIT</a>
+            <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+                <button type="submit">DELETE</button>
+            </form>
+        <% } %>
     </div>
