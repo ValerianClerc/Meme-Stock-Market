@@ -6,8 +6,8 @@
     <img src="../..<%= post.imgPath%>">
     <form action="/posts/<%= post.id %>?_method=PUT" method="post">
         <input type="text" name="post[title]" value="<%= post.title %>" placeholder="Title">
-        <input type="text" name="post[description]" value="<%= post.description%>" placeholder="Content">
-        <button type="submit">Update Post</button>
+        <textarea type="textarea" name="post[description]" placeholder="Description" rows="8" cols="80"><%= post.description %></textarea>
+        <button>Update Post</button>
     </form>
 
 </div>
