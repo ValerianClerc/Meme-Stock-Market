@@ -28,19 +28,19 @@ nav {
 }
 
 .navbar a:hover {
-    background-color: #3c4241 !important;
+    background-color: #00A3CE !important;
 }
 
 .navbar a:focus {
-    background-color: #3c4241 !important;
+    background-color: #00A3CE !important;
 }
 
 .navbar a:active {
-    background-color: #3c4241 !important;
+    background-color: #00A3CE !important;
 }
 
 .navbar a:visited {
-    background-color: #3c4241 !important;
+    background-color: #00A3CE !important;
 }
 
 .navbar-header a:hover {
@@ -48,34 +48,50 @@ nav {
 }
 
 .navbar-right .category-elements:hover {
-    background-color: #3c4241 !important;
+    background-color: #00A3CE !important;
+}
+
+#top-posts {
+    background-color: #00A3CE;
+}
+
+#top-posts:hover {
+    background-color: #1a94b2 !important;
+}
+
+#top-posts:focus {
+    background-color: #1a94b2 !important;
+}
+
+#top-posts:active {
+    background-color: #1a94b2 !important;
 }
 
 .navbar-form input {
     background-color: #3c4241;
-    border-color: #45600b;
+    border-color: #00A3CE;
 }
 
 .navbar-form input:focus {
     background-color: #3c4241;
-    border-color: #45600b;
+    border-color: #00A3CE;
     color: white;
 }
 
 .navbar-form button {
-    background-color: #45600b;
-    border-color: #45600b;
+    background-color: #00A3CE;
+    border-color: #00A3CE;
     color: white;
 }
 
 .navbar-form button:hover {
-    background-color: #384c08;
+    background-color: #1a94b2;
     border-color: white;
     color: white;
 }
 
 .navbar-form button:active {
-    background-color: #384c08 !important;
+    background-color: #1a94b2 !important;
     border-color: white !important;
     color: white!important;
 }
@@ -110,12 +126,12 @@ nav {
 }
 
 .navbar-default .navbar-toggle:hover {
-    background-color: #45600b;
+    background-color: #00A3CE;
     border-color: white;
 }
 
 .navbar-default .navbar-toggle:focus {
-    background-color: #45600b;
+    background-color: #00A3CE;
     border-color: white;
 }
 
@@ -155,11 +171,14 @@ nav {
       display:block !important;
   }
 }
-#logo {
-    height: 100%;
-    width: 300px;
-    padding-left: 10%;
-    padding-top: 2;
+
+#logoh1 {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/*not working*/
+#logo-beta {
+    font-size: 27px !important;
 }
 
 .btn {
