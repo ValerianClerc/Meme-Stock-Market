@@ -2,6 +2,7 @@
 
 
     <div id="main">
+        <a href="/posts">BACK TO TOP POSTS</a>
         <%= typeof msg != 'undefined' ? msg : '' %>
         <h3><%=post.title%></h3>
         <img src="../..<%= post.imgPath%>">
@@ -17,21 +18,26 @@
                 <h4>Add a comment below:</h4>
                 <form action="/posts/<%= post._id %>/comments" method="POST">
                     <input type="text" name="title" placeholder="Title">
+                    <br>
                     <textarea type="textarea" name="content" placeholder="Content" rows="4" cols="80"></textarea>
+                    <br>
                     <button>Submit!</button>
                 </form>
             </div>
         <% } %>
         <h4>Comments:</h4>
         <% if(typeof comments != 'undefined' && comments[0] != null) { %>
-            <p>SOMETHING</p>
+            <ul>
             <% comments.forEach(function(comment) { %>
                 <div class="comment">
-                    <p><strong><%= comment.author.username %><strong> - <%= comment.timeStamp %><p>
-                    <p><%= comment.content %><p>
-                    <p><%= comment._id %></p>
+                    <li>
+                        <p><strong><%= comment.author.username %></strong> - <%= comment.timeStamp %><p>
+                        <p><%= comment.content %><p>
+                        <p><%= comment._id %></p>
+                    </li>
                 </div>
             <% }); %>
+            </ul>
         <% } else {%>
             <p>No comments yet... Be the first!</p>
             <% if(typeof currentUser == 'undefined') { %>
@@ -39,3 +45,5 @@
             <% } %>
         <% } %>
     </div>
+
+<% include partials/footer %>
