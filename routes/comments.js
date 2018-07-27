@@ -18,7 +18,7 @@ function isLoggedIn(req, res, next) {
 // route to post 'new comment' form
 router.post('/', isLoggedIn, function (req, res) {
     var comment = new Comment({
-        timeStamp: Date.now(),
+        timeStamp: new Date().toISOString(),
         author: {
             id: req.user._id,
             username: req.user.username

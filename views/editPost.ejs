@@ -1,6 +1,7 @@
 <% include partials/header %>
 
 <div id="main">
+    <a href="/posts/<%= post.id %>">Back to post view</a>
     <h1>Edit your post</h1>
     <%= typeof msg != 'undefined' ? msg : '' %>
     <img src="../..<%= post.imgPath%>">

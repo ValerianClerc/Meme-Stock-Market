@@ -6,6 +6,7 @@ var User = require('../models/user'),
     multer = require('multer'),
     methodOverride = require('method-override'),
     fs                    = require('fs'),
+    path                  = require('path'),
     bodyParser =     require('body-parser');
 
 //MIDDLEWARE
@@ -76,7 +77,7 @@ router.post('/', isLoggedIn, function (req, res) {
             }
             Post.create({
                 title: req.body.title,
-                timeStamp: Date.now(),
+                timeStamp: new Date().toISOString(),
                 author: {
                     id: req.user._id,
                     username: req.user.username
