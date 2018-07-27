@@ -1,8 +1,10 @@
 var mongoose = require('mongoose');
 var multer = require('multer');
 var User = require('./user');
+var Comment = require('./comment');
 
-// Meme schema
+
+// Post schema
 
 var postSchema = new mongoose.Schema({
     title: String,
@@ -14,6 +16,10 @@ var postSchema = new mongoose.Schema({
         },
         username: String
     },
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment'
+    }],
     imgPath: String,
     description: String
 });

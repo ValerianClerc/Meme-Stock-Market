@@ -2,19 +2,21 @@ var express               = require('express'),
     mongoose              = require('mongoose'),
     bodyParser            = require('body-parser'),
     Post                  = require('./models/post'),
-    User                  = require('./models/user')
+    User                  = require('./models/user'),
+    Comment               = require('./models/comment'),
     passport              = require('passport'),
     LocalStrategy         = require('passport-local'),
     passportLocalMongoose = require('passport-local-mongoose'),
     fs                    = require('fs'),
     multer                = require('multer'),
-    methodOverride = require('method-override'),
+    methodOverride        = require('method-override'),
     path                  = require('path');
 
 // ROUTES
 var postRoutes = require('./routes/posts'),
     profileRoutes = require('./routes/profile'),
-    indexRoutes = require('./routes/index');
+    indexRoutes = require('./routes/index'),
+    commentRoutes = require('./routes/comments');
 
     // var faker = require('faker');
 
@@ -51,6 +53,7 @@ app.use(function (req, res, next) {
 app.use(indexRoutes);
 app.use('/posts', postRoutes);
 app.use(profileRoutes);
+app.use('/posts/:id/comments', commentRoutes);
 
 
 // MongoDB set-up

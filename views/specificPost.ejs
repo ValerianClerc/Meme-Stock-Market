@@ -12,4 +12,30 @@
                 <button type="submit">DELETE</button>
             </form>
         <% } %>
+        <% if (typeof currentUser != 'undefined') { %>
+            <div class="addComment">
+                <h4>Add a comment below:</h4>
+                <form action="/posts/<%= post._id %>/comments" method="POST">
+                    <input type="text" name="title" placeholder="Title">
+                    <textarea type="textarea" name="content" placeholder="Content" rows="4" cols="80"></textarea>
+                    <button>Submit!</button>
+                </form>
+            </div>
+        <% } %>
+        <h4>Comments:</h4>
+        <% if(typeof comments != 'undefined' && comments[0] != null) { %>
+            <p>SOMETHING</p>
+            <% comments.forEach(function(comment) { %>
+                <div class="comment">
+                    <p><strong><%= comment.author.username %><strong> - <%= comment.timeStamp %><p>
+                    <p><%= comment.content %><p>
+                    <p><%= comment._id %></p>
+                </div>
+            <% }); %>
+        <% } else {%>
+            <p>No comments yet... Be the first!</p>
+            <% if(typeof currentUser == 'undefined') { %>
+                <a href="./new">Log in to comment!</a>
+            <% } %>
+        <% } %>
     </div>
