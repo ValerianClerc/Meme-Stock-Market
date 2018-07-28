@@ -1,5 +1,6 @@
 <% include partials/header %>
 
+    <link rel="stylesheet" href="/css/specificPost.css" type="text/css">
 
     <div id="main">
         <a href="/posts">BACK TO TOP POSTS</a>
@@ -33,7 +34,7 @@
                     <li>
                         <p><strong><%= comment.author.username %></strong> - <%= comment.timeStamp %><p>
                         <p><%= comment.content %><p>
-                        <p><%= comment._id %></p>
+                        <hr>
                     </li>
                 </div>
             <% }); %>

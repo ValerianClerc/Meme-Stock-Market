@@ -29,11 +29,8 @@ router.post('/', isLoggedIn, function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            console.log(post.comments);
-            console.log(comment._id);
             comment.post.id = post._id;
             post.comments.push(comment._id);
-            console.log(post.comments);
             User.findOne({_id: post.author.id}, function (err, user) {
                 if(err) {
                     console.log(err);
@@ -42,15 +39,23 @@ router.post('/', isLoggedIn, function (req, res) {
                     comment.save();
                     post.save();
                     user.save();
-                    res.redirect('/');
+                    res.redirect('/posts/' + req.params.id);
                 }
             });
         }
     });
 });
 
+router.get('/:commentId', function (req, res) {
+    res.render('commentEdit');
+});
+
+router.put('/:commentId/edit', function (req, res) {
+
+});
+
 // Delete request for comment
-router.delete('/:id', isLoggedIn, function (req, res) {
+router.delete('/:commentId', isLoggedIn, function (req, res) {
 
 });
 

@@ -111,19 +111,6 @@ router.get('/:id', function (req, res) {
             console.log(err);
             res.render('error');
         } else {
-
-            // Comment.findById(req.params.id, function (err, comments) {
-            //     if(err) {
-            //         console.log(err);
-            //     } else {
-            //         console.log('ACCESSING COMMENTS:')
-            //         console.log(post.id);
-            //         console.log(comments.post.id);
-            //         console.log(comments);
-            //         res.render('specificPost', {post : post, currentUser : req.user, comments : comments});
-            //     }
-            // // });
-            // console.log(post.comments);
             Comment.find({"post.id": req.params.id }, function (err, comments){
                 res.render('specificPost', {post : post, currentUser : req.user, comments : comments});
             });
