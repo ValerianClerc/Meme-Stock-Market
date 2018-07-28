@@ -17,3 +17,7 @@
     width: 100%;
     /* height: 100px; */
 }
+
+#main #grid .liked {
+    background-color: blue;
+}
