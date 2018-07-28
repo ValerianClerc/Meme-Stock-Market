@@ -4,18 +4,18 @@ body {
     background-position: center;
 }
 
-#login h2 {
+#signup h2 {
     font-size: 150%;
 }
 
-#login {
+#signup {
     text-align: center;
     font-size: 250%;
     min-height: inherit;
     color: #323535;
 }
 
-#login input {
+#signup input {
     margin-bottom: 1%;
     width: 32%;
     min-width: 200px;
@@ -30,7 +30,7 @@ body {
     color: white;
 }
 
-#login input:focus {
+#signup input:focus {
     outline: none;
 }
 
@@ -39,7 +39,7 @@ body {
     opacity: 1;
 }
 
-#login button {
+#signup button {
     width: 10%;
     height: 7%;
     min-width: 100px;
@@ -53,6 +53,6 @@ body {
     margin-top: 2%;
 }
 
-#login button:hover {
+#signup button:hover {
     background: #007691;
 }

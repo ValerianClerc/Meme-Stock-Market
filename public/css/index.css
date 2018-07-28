@@ -1,23 +1,43 @@
 #ad {
     color: white;
-    background-image: url("res/ad-background2.PNG");
     text-align: center;
-    font-size: 170%;
+    font-size: 200%;
     padding: 5%;
 }
 
 #ad h2 {
-    font-size: 250%;
+    font-size: 200%;
     margin: 0;
 }
 
-#signUpAd {
+#ad p {
+    flex-wrap: wrap;
+}
+
+#ad-signup {
     text-decoration: none;
     border: solid;
-    border-color: #323535;
-    background: #323535;
-    padding: 15 50;
-    border-radius: 20px;
+    border-color: white;
+    background: #00A3CE;
+    border-radius: 30px;
     color: white;
-    font-size: 40;
+    padding: 10px 30px;
+}
+
+#ad-signup:hover {
+    text-decoration: none;
+    border: solid;
+    border-color: white;
+    background: #1a94b2;
+    border-radius: 30px;
+    color: white;
+    padding: 10px 30px;
+}
+
+.parallax { 
+    background-image: url("res/signup-ad-parallax.jpg");
+    height: 100%; 
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 100%;
 }
