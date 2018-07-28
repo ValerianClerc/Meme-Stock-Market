@@ -10,6 +10,10 @@
     margin: 0;
 }
 
+#ad p {
+    flex-wrap: wrap;
+}
+
 #ad-signup {
     text-decoration: none;
     border: solid;
@@ -35,6 +39,5 @@
     height: 100%; 
     background-attachment: fixed;
     background-position: top;
-    background-repeat: none;
     background-size: 100%;
 }
