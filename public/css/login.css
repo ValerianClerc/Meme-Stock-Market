@@ -1,3 +1,9 @@
+body { 
+    background-image: url(res/sign-in-up-background.png);
+    background-size: cover;
+    background-position: center;
+}
+
 #login h2 {
     font-size: 150%;
 }

@@ -6,7 +6,7 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    background: whitesmoke;
+    background: #ffffff;
     min-width: 300px;
     min-height: 500px;
     position: relative;

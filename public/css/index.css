@@ -38,6 +38,6 @@
     background-image: url("res/signup-ad-parallax.jpg");
     height: 100%; 
     background-attachment: fixed;
-    background-position: top;
+    background-position: center;
     background-size: 100%;
 }
