@@ -3,6 +3,7 @@
     text-align: center;
     font-size: 200%;
     padding: 5%;
+    padding: 10% 0;
 }
 
 #ad h2 {
@@ -34,10 +35,10 @@
     padding: 10px 30px;
 }
 
-.parallax { 
+.parallax {
     background-image: url("res/signup-ad-parallax.jpg");
-    height: 100%; 
+    height: 100%;
     background-attachment: fixed;
     background-position: center;
-    background-size: 100%;
+    background-size: cover;
 }

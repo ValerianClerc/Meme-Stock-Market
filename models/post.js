@@ -21,6 +21,13 @@ var postSchema = new mongoose.Schema({
         ref: 'Comment'
     }],
     imgPath: String,
+    likes: {
+        total: Number,
+        liker: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }]
+    },
     description: String
 });
 

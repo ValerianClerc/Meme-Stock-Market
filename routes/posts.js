@@ -52,11 +52,12 @@ function checkFileType (file, cb) {
 
 // Posts view
 router.get('/', function (req, res) {
-    Post.find({}, function (err, posts) {
+    Post.find({}, null, {sort: {timeStamp: -1}}, function (err, posts) {
         if (err) {
             console.log(err);
         } else {
-            res.render('posts', {posts: posts});
+            // posts = posts.sort({timeStamp : -1});
+            res.render('posts', {posts: posts, user : req.user});
         }
     });
 });
@@ -81,6 +82,10 @@ router.post('/', isLoggedIn, function (req, res) {
                 author: {
                     id: req.user._id,
                     username: req.user.username
+                },
+                likes : {
+                    total: 0,
+                    liker: []
                 },
                 imgPath: '/uploads' + '/' + req.file.filename,
                 description: req.body.description
@@ -111,22 +116,22 @@ router.get('/:id', function (req, res) {
             console.log(err);
             res.render('error');
         } else {
-
-            // Comment.findById(req.params.id, function (err, comments) {
-            //     if(err) {
-            //         console.log(err);
-            //     } else {
-            //         console.log('ACCESSING COMMENTS:')
-            //         console.log(post.id);
-            //         console.log(comments.post.id);
-            //         console.log(comments);
-            //         res.render('specificPost', {post : post, currentUser : req.user, comments : comments});
-            //     }
-            // // });
-            // console.log(post.comments);
-            Comment.find({"post.id": req.params.id }, function (err, comments){
+            Comment.find({"post.id": req.params.id }, null, {sort: {timeStamp: -1}}, function (err, comments){
                 res.render('specificPost', {post : post, currentUser : req.user, comments : comments});
             });
+        }
+    });
+});
+
+// like route
+router.post('/:id/like', isLoggedIn, function (req, res) {
+    Post.findOne({_id : req.params.id}, function (err, post) {
+        if (err) {
+            console.log('error');
+            res.send('error?');
+        } else {
+            toggleLike(post, req);
+            res.redirect('/posts');
         }
     });
 });
@@ -175,12 +180,23 @@ router.delete('/:id', isLoggedIn, function (req, res) {
                     console.log(err);
                     throw err;
                 } else {
-                    console.log('WORKED!');
-                    // removing post from DB
-                    post.remove();
-                    res.redirect('/posts');
+                    User.findOne({'_id': post.author.id}, function (err, user) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            var index = user.posts.indexOf(post._id);
+                            if (index > -1) {
+                                user.posts.splice(index, 1);
+                            }
+                            user.save()
+                            // removing post from DB
+                            post.remove();
+                            res.redirect('/posts');
+                        }
+                    });
+
                 }
-            })
+            });
 
         } else {
             return res.redirect('/posts');
@@ -188,5 +204,30 @@ router.delete('/:id', isLoggedIn, function (req, res) {
     });
 });
 
+function toggleLike (post, req) {
+    if (post.likes.total == 0) {
+        console.log('first like');
+        post.likes.total++;
+        post.likes.liker.push(req.user._id);
+
+    } else if (post.likes.liker.some(function (el) {
+        return el.equals(req.user._id);
+    })) {
+        console.log('unlike');
+        post.likes.total--;
+        // post.likes.liker = post.likes.liker.filter(function (el) {
+        //     return .indexOf(req.user._id) === -1;
+        // })
+        var index = post.likes.liker.indexOf(req.user._id);
+        if (index > -1) {
+            post.likes.liker.splice(index, 1);
+        }
+    } else {
+        console.log('like');
+        post.likes.total++;
+        post.likes.liker.push(req.user._id);
+    }
+    post.save();
+}
 
 module.exports = router;

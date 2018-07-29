@@ -239,9 +239,10 @@ nav {
     color: white;
     background-color: #323535;
     width: 100%;
-    height: 25%;
+    height: 15%;
     justify-items: center;
-    max-height: 100px;
+    /* max-height: 100px; */
+    flex-shrink: 0;
     /* overflow: hidden;
     position: absolute;
     bottom:0; */
