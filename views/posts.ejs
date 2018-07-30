@@ -17,22 +17,19 @@
                             <div class="data" data-test-value='<%= JSON.stringify(post) %>'></div>
                                 <img id="image" class="" src="..<%= post.imgPath%>">
                     </div>
-                        <p><%= post.description.substring(0, 100) %>...</p>
-                        <a href="./posts/<%= post._id %>">Read More!</a>
                         <% if (typeof user== 'undefined') { %>
                             <p>ELSE</p>
-                            <form action="./login">
-                                <button>Like</button>
+                            <form action="./login" class="not-liked">
+                                <button></button>
                             </form>
                         <% } else if (!post.likes.liker.some(function (el) { return el.equals(user._id)})) { %>
-                            <p>IF</p>
-                                <button>Like</button>
+                                <button class="not-liked"></button>
                         <% } else { %>
-                            <p>ELSE</p>
-                                <button class="liked">Like</button>
+                                <button class="liked"></button>
                         <% } %>
+                        <a href="./posts/<%= post._id %>"><img id="read-more" src="/css/res/read-more.png"></a>
+                        <p><%= post.description.substring(0, 100) %>...</p>                        
                         </div>
-
                 <% } %>
             <% }); %>
         </div>
