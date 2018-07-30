@@ -6,3 +6,7 @@
     width: 100%;
     border-radius: 10px;
 }
+
+#main .liked {
+    background-color: blue;
+}

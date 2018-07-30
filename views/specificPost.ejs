@@ -3,11 +3,25 @@
     <link rel="stylesheet" href="/css/specificPost.css" type="text/css">
 
     <div id="main">
+         <div class="data" data-test-value='<%= JSON.stringify(post) %>'></div>
         <a href="/posts">BACK TO TOP POSTS</a>
         <%= typeof msg != 'undefined' ? msg : '' %>
         <h3><%=post.title%></h3>
         <img src="../..<%= post.imgPath%>">
         <p><%= post.description %></p>
+        <% if (typeof user== 'undefined') { %>
+            <p>ELSE</p>
+            <form action="../login">
+              <button id="like">Like</button>
+            </form>
+        <% } else if (!post.likes.liker.some(function (el) { return el.equals(user._id)})) { %>
+          <p>IF</p>
+          <button id="like">Like</button>
+        <% } else { %>
+          <p>ELSE</p>
+          <button class="liked" id="like">Like</button>
+        <% } %>
+
         <% if(typeof currentUser != 'undefined' && post.author.username == currentUser.username) { %>
             <a href="/posts/<%= post._id%>/edit">EDIT</a>
             <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
@@ -46,5 +60,5 @@
             <% } %>
         <% } %>
     </div>
-
+ <script type="text/javascript" src="/javascript/specificPost.js"></script>
 <% include partials/footer %>

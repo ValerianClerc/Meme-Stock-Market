@@ -117,7 +117,7 @@ router.get('/:id', function (req, res) {
             res.render('error');
         } else {
             Comment.find({"post.id": req.params.id }, null, {sort: {timeStamp: -1}}, function (err, comments){
-                res.render('specificPost', {post : post, currentUser : req.user, comments : comments});
+                res.render('specificPost', {post : post, user : req.user, comments : comments});
             });
         }
     });
