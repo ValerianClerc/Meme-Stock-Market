@@ -74,6 +74,7 @@ body {
 }
 
 #main #grid .liked {
+    display: inline;
     padding: 6%;
     background-image: url(res/like-button-liked.png);
     background-size: cover;
@@ -81,10 +82,15 @@ body {
 }
 
 #main #grid .not-liked {
+    display: inline;
     padding: 6%;
     background-image: url(res/like-button.png);
     background-size: cover;
     background-position: center;
+}
+
+#main #grid form {
+    display: inline;
 }
 
 #main #grid button {

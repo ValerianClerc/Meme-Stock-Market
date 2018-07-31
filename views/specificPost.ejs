@@ -10,7 +10,6 @@
         <img id="post" src="../..<%= post.imgPath%>">
         <p id="description"><%= post.description %></p>
         <% if (typeof user== 'undefined') { %>
-            <p>ELSE</p>
             <form action="../login">
               <button class="not-liked" id="like"></button>
             </form>

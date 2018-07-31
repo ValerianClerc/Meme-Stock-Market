@@ -18,9 +18,8 @@
                                 <img id="image" class="" src="..<%= post.imgPath%>">
                     </div>
                         <% if (typeof user== 'undefined') { %>
-                            <p>ELSE</p>
-                            <form action="./login" class="not-liked">
-                                <button></button>
+                            <form action="./login">
+                                <button class="not-liked" id="not-liked"></button>
                             </form>
                         <% } else if (!post.likes.liker.some(function (el) { return el.equals(user._id)})) { %>
                                 <button class="not-liked"></button>
