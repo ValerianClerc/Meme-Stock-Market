@@ -28,7 +28,8 @@
                                 <button class="liked"></button>
                         <% } %>
                         <a href="./posts/<%= post._id %>"><img id="read-more" src="/css/res/read-more.png"></a>
-                        <p><%= post.description.substring(0, 100) %>...</p>                        
+                         <span id="poster">By:&nbsp;<%= post.author.username %></span>
+                        <p id="description"><%= post.description.substring(0, 100) %>...</p>                        
                         </div>
                 <% } %>
             <% }); %>
