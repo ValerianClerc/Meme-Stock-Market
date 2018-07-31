@@ -1,12 +1,208 @@
 #main {
-    margins: 10% 10%;
+    
 }
 
-#main img {
-    width: 100%;
-    border-radius: 10px;
+#back-button {
+    text-align: left;
+    width: 6%;
+    min-width: 40px;
+    margin-top: auto;
+    margin-bottom: 3%;
+    transition: transform .3s;
+    display: block;
+}
+
+#back-button:hover {
+    transform: scale(1.3);
+    cursor: pointer;
+    display: block;
+}
+
+#title {
+    font-size: 300%;
+    margin-bottom: 3%;
+    margin-left: 1%;
+}
+
+@media (max-width: 500px) {
+    #title {
+    font-size: 200%;
+    margin-bottom: 3%;
+    margin-left: 1%;
+    }
+}
+
+#post {
+    width: 50%;
+    border: solid #00A3CE;
+    border-width: thick;
+    border-radius: 20px;
+}
+
+#description {
+    margin-top: 1%;
+    border: solid #00A3CE;
+    padding: 1%;
+    border-radius: 15px;
+    border-width: thick;
+    width: 70%;
+    word-wrap: break-word;
+}
+
+
+
+#main form {
+    display: inline;
+}
+
+button {
+    background: none;
+    border: none;
+}
+
+#edit {
+    text-align: left;
+    width: 6%;
+    margin-top: 5px;
+    transition: transform .3s;
+}
+
+#edit:hover {
+    transform: scale(1.3);
+    cursor: pointer;
+}
+
+#delete {
+    background-image: url(res/delete-button.png);
+    background-size: cover;
+    background-position: center;
+    margin-top: 10px;;
+    margin-left: 1%;
+    margin-right: 1%;
+    transition: transform .3s;
+    padding: 3%;
+    
+}
+
+#delete:hover {
+    transform: scale(1.3);
+    cursor: pointer;
 }
 
 #main .liked {
-    background-color: blue;
+    padding: 3%;
+    background-image: url(res/like-button-liked.png);
+    background-size: cover;
+    background-position: center;
+    outline: none;
 }
+
+#main .not-liked {
+    padding: 3%;
+    background-image: url(res/like-button.png);
+    background-size: cover;
+    background-position: center;
+    outline: none;
+}
+
+@media (max-width: 900px) {
+   #edit {
+    text-align: left;
+    width: 44px;
+    margin-top: 5px;
+    transition: transform .3s;
+}
+
+#edit:hover {
+    transform: scale(1.3);
+    cursor: pointer;
+}
+
+#delete {
+    background-image: url(res/delete-button.png);
+    background-size: cover;
+    background-position: center;
+    margin-top: 10px;;
+    margin-left: 1%;
+    margin-right: 1%;
+    transition: transform .3s;
+    padding: 22px;
+    
+}
+
+#delete:hover {
+    transform: scale(1.3);
+    cursor: pointer;
+} 
+
+#main .liked {
+    padding: 22px;
+    background-image: url(res/like-button-liked.png);
+    background-size: cover;
+    background-position: center;
+    outline: none;
+}
+
+#main .not-liked {
+    padding: 22px;
+    background-image: url(res/like-button.png);
+    background-size: cover;
+    background-position: center;
+    outline: none;
+}
+}
+
+#comment-title {
+    margin-bottom: 1%;
+    width: 32%;
+    min-width: 200px;
+    height: 7%;
+    min-height: 40px;
+    border-radius: 10px;
+    font-size: 100%;
+    background: #323535;
+    border-color: #00A3CE;
+    border-width: thick;
+    padding-left: 10px;
+    color: white;
+    outline: none;
+    margin-left: 0;
+}
+
+#comment-text {
+    border-radius: 10px;
+    font-size: 100%;
+    background: #323535;
+    border-color: #00A3CE;
+    border-width: thick;
+    padding-left: 10px;
+    color: white;
+    outline: none;
+    width: 70%;
+    min-width: 200px;
+}
+
+::placeholder {
+    color: darkgray;
+    opacity: 1;
+}
+
+#comment-button {
+    width: 10%;
+    height: 7%;
+    min-width: 100px;
+    min-height: 40px;
+    background: -webkit-linear-gradient(top, #00A3CE,
+    #007691);
+    border: none;
+    color: white;
+    border-radius: 7px;
+    font-size: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+#comment-button:hover {
+    background: #007691;
+}
+

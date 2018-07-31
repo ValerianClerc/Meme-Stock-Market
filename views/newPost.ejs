@@ -1,16 +1,23 @@
 <% include partials/header %>
 
+<link rel="stylesheet" href="/css/newPost.css">
+
 <div id="main">
-    <h1>Submit new post</h1>
-    <%= typeof msg != 'undefined' ? msg : '' %>
-    <form action="/posts" method="POST" enctype="multipart/form-data">
-        <input type="text" name="title" placeholder="Title">
-        <br>
-        <input type="file" name="newPost" accept="image/jpg">
-        <textarea type="textarea" name="description" placeholder="Description" rows="8" cols="80"></textarea>
-        <br>
-        <button>Submit!</button>
-    </form>
+    <div id="newPost">
+        <h1>Submit a new post</h1>
+        <%= typeof msg != 'undefined' ? msg : '' %>
+        <form action="/posts" method="POST" enctype="multipart/form-data">
+            <input id="title" type="text" name="title" placeholder="Title">
+            <br>
+            <!--<label for="upload" class="choose-file-button">
+            Choose file
+            </label>-->
+            <input id="upload" type="file" name="newPost" accept="image/jpg">
+            <textarea type="textarea" name="description" placeholder="Description" rows="8" cols="80"></textarea>
+            <br>
+            <button>Submit!</button>
+        </form>
+    </div>
 </div>
 
 <% include partials/footer %>

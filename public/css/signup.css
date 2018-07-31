@@ -51,6 +51,7 @@ body {
     border-radius: 7px;
     font-size: 45%;
     margin-top: 2%;
+    outline: none;
 }
 
 #signup button:hover {

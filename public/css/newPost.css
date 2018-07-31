@@ -1,0 +1,93 @@
+body { 
+    
+}
+
+#newPost h1 {
+    font-size: 150% !important;
+    text-align: center;
+    color: #00A3CE;
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 5%;
+}
+
+#newPost {
+    font-size: 250%;
+}
+
+#title {
+    margin-bottom: 1%;
+    width: 32%;
+    min-width: 200px;
+    height: 7%;
+    min-height: 40px;
+    border-radius: 10px;
+    font-size: 45%;
+    background: #323535;
+    border-color: #00A3CE;
+    border-width: thick;
+    padding-left: 10px;
+    color: white;
+    outline: none;
+}
+
+#upload {
+    font-size: 50%;
+    margin-bottom: 1%;
+}
+
+/*input[type="file"] {
+    display: none;
+}
+
+.choose-file-button {
+    display: block;
+    cursor: pointer;
+    font-size: 50%;
+    border: solid #00A3CE;
+    background-color: #323535;
+    width: 10%;
+    min-width: 100px;
+    padding-left: 1%;
+    color: darkgray;
+    border-radius: 10px;
+    font-weight: 100;
+    font-family: inherit;
+    border-width: thick;
+}*/
+
+#newPost textarea {
+    border-radius: 10px;
+    font-size: 45%;
+    background: #323535;
+    border-color: #00A3CE;
+    border-width: thick;
+    padding-left: 10px;
+    color: white;
+    outline: none;
+    width: 50%;
+    min-width: 255px;
+}
+
+::placeholder {
+    color: darkgray;
+    opacity: 1;
+}
+
+#newPost button {
+    width: 10%;
+    height: 7%;
+    min-width: 100px;
+    min-height: 40px;
+    background: -webkit-linear-gradient(top, #00A3CE,
+    #007691);
+    border: none;
+    color: white;
+    border-radius: 7px;
+    font-size: 45%;
+    margin-top: 2%;
+}
+
+#newPost button:hover {
+    background: #007691;
+}
