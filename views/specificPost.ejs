@@ -1,61 +1,67 @@
 <% include partials/header %>
 
-    <link rel="stylesheet" href="/css/specificPost.css" type="text/css">
+  <link rel="stylesheet" href="/css/specificPost.css" type="text/css">
 
-    <div id="main">
-         <div class="data" data-test-value='<%= JSON.stringify(post) %>'></div>
-        <a href="/posts"><img id="back-button" src="/css/res/back-button.png"></a>
-        <%= typeof msg != 'undefined' ? msg : '' %>
-        <h3 id="title"><%=post.title%></h3>
-        <img id="post" src="../..<%= post.imgPath%>">
-        <p id="description"><%= post.description %></p>
-        <% if (typeof user== 'undefined') { %>
-            <form action="../login">
-              <button class="not-liked" id="like"></button>
-            </form>
+  <div id="main">
+    <div class="data" data-test-value='<%= JSON.stringify(post) %>'></div>
+    <a href="/posts"><img id="back-button" src="/css/res/back-button.png"></a>
+    <%= typeof msg != 'undefined' ? msg : '' %>
+      <h3 id="title"><%=post.title%></h3>
+      <img id="post" src="../..<%= post.imgPath%>">
+      <p id="description">
+        <%= post.description %>
+      </p>
+      <% if (typeof user== 'undefined') { %>
+        <form action="../login">
+          <button class="not-liked"></button>
+        </form>
         <% } else if (!post.likes.liker.some(function (el) { return el.equals(user._id)})) { %>
           <button class="not-liked" id="like"></button>
-        <% } else { %>
-          <button class="liked" id="like"></button>
-        <% } %>
-
-        <% if(typeof currentUser != 'undefined' && post.author.username == currentUser.username) { %>
-        <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
-                <button id="delete" type="submit"></button>
-            </form>
-            <a href="/posts/<%= post._id%>/edit"><img id="edit" src="/css/res/edit-button.png"></a>
-        <% } %>
-        <% if (typeof currentUser != 'undefined') { %>
-            <div class="addComment"><br>
-                <h4>Add a comment below:</h4>
-                <form action="/posts/<%= post._id %>/comments" method="POST">
-                    <input id="comment-title" type="text" name="title" placeholder="Title">
-                    <br>
-                    <textarea id="comment-text" type="textarea" name="content" placeholder="Content" rows="4" cols="80"></textarea>
-                    <br>
-                    <button id="comment-button">Submit!</button>
-                </form>
-            </div>
-        <% } %>
-        <h4>Comments:</h4>
-        <% if(typeof comments != 'undefined' && comments[0] != null) { %>
-            <ul>
-            <% comments.forEach(function(comment) { %>
-                <div class="comment">
-                    <li>
-                        <p><strong><%= comment.author.username %></strong> - <%= comment.timeStamp %><p>
-                        <p><%= comment.content %><p>
-                        <hr>
-                    </li>
-                </div>
-            <% }); %>
-            </ul>
-        <% } else {%>
-            <p>No comments yet... Be the first!</p>
-            <% if(typeof currentUser == 'undefined') { %>
-                <a href="./new">Log in to comment!</a>
+          <% } else { %>
+            <button class="liked" id="like"></button>
             <% } %>
-        <% } %>
-    </div>
- <script type="text/javascript" src="/javascript/specificPost.js"></script>
-<% include partials/footer %>
+
+              <% if(typeof currentUser != 'undefined' && post.author.username == currentUser.username) { %>
+                <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+                  <button id="delete" type="submit"></button>
+                </form>
+                <a href="/posts/<%= post._id%>/edit"><img id="edit" src="/css/res/edit-button.png"></a>
+                <% } %>
+                  <% if (typeof currentUser != 'undefined') { %>
+                    <div class="addComment"><br>
+                      <h4>Add a comment below:</h4>
+                      <form action="/posts/<%= post._id %>/comments" method="POST">
+                        <input id="comment-title" type="text" name="title" placeholder="Title">
+                        <br>
+                        <textarea id="comment-text" type="textarea" name="content" placeholder="Content" rows="4" cols="80"></textarea>
+                        <br>
+                        <button id="comment-button">Submit!</button>
+                      </form>
+                    </div>
+                    <% } %>
+                      <h4>Comments:</h4>
+                      <% if(typeof comments != 'undefined' && comments[0] != null) { %>
+                        <ul>
+                          <% comments.forEach(function(comment) { %>
+                            <div class="comment">
+                              <li>
+                                <p><strong><%= comment.author.username %></strong> -
+                                  <%= comment.timeStamp %>
+                                </p>
+                                <p>
+                                  <%= comment.content %>
+                                </p>
+                                <hr>
+                              </li>
+                            </div>
+                            <% }); %>
+                        </ul>
+                        <% } else {%>
+                          <p>No comments yet... Be the first!</p>
+                          <% if(typeof currentUser == 'undefined') { %>
+                            <a href="./new">Log in to comment!</a>
+                            <% } %>
+                              <% } %>
+  </div>
+  <script type="text/javascript" src="/javascript/specificPost.js"></script>
+  <% include partials/footer %>

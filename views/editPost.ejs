@@ -1,16 +1,17 @@
 <% include partials/header %>
 
-<div id="main">
-    <a href="/posts/<%= post.id %>">Back to post view</a>
-    <h1>Edit your post</h1>
+  <link rel="stylesheet" href="/css/editPost.css" type="text/css">
+
+  <div id="main">
+    <a href="/posts"><img id="back-button" src="/css/res/back-button.png"></a>
     <%= typeof msg != 'undefined' ? msg : '' %>
-    <img src="../..<%= post.imgPath%>">
-    <form action="/posts/<%= post.id %>?_method=PUT" method="post">
-        <input type="text" name="post[title]" value="<%= post.title %>" placeholder="Title">
-        <textarea type="textarea" name="post[description]" placeholder="Description" rows="8" cols="80"><%= post.description %></textarea>
-        <button>Update Post</button>
-    </form>
+      <img id="post" src="../..<%= post.imgPath%>">
+      <form action="/posts/<%= post.id %>?_method=PUT" method="post">
+        <input id="title" type="text" name="post[title]" value="<%= post.title %>" placeholder="Title">
+        <textarea id="description" type="textarea" name="post[description]" placeholder="Description" rows="8" cols="80"><%= post.description %></textarea>
+        <button id="update">Update Post</button>
+      </form>
 
-</div>
+  </div>
 
-<% include partials/footer %>
+  <% include partials/footer %>

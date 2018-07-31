@@ -1,272 +1,271 @@
 html, body {
-    font-family: "Calibri", sans-serif;
-    height: 100%;
+  font-family: "Calibri", sans-serif;
+  height: 100%;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    background: #ffffff;
-    min-width: 300px;
-    min-height: 500px;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  min-width: 300px;
+  min-height: 500px;
+  position: relative;
 }
 
 nav {
-    margin: 0;
-    min-width: 300px;
+  margin: 0;
+  min-width: 300px;
 }
 
 .navbar-default {
-    background-color: #323535;
-    border-radius: 0px;
-    border: 0;
+  background-color: #323535;
+  border-radius: 0px;
+  border: 0;
 }
 
 .navbar a {
-    color: white!important;
+  color: white !important;
 }
 
 .navbar a:hover {
-    background-color: #00A3CE !important;
+  background-color: #00A3CE !important;
 }
 
 .navbar a:focus {
-    background-color: #00A3CE !important;
+  background-color: #00A3CE !important;
 }
 
 .navbar a:active {
-    background-color: #00A3CE !important;
+  background-color: #00A3CE !important;
 }
 
 .navbar a:visited {
-    background-color: #00A3CE !important;
+  background-color: #00A3CE !important;
 }
 
 .navbar-header a:hover {
-    background-color: #323535 !important;
+  background-color: #323535 !important;
 }
 
 .navbar-right .category-elements:hover {
-    background-color: #00A3CE !important;
+  background-color: #00A3CE !important;
 }
 
 #top-posts {
-    background-color: #00A3CE;
+  background-color: #00A3CE;
 }
 
 #top-posts:hover {
-    background-color: #1a94b2 !important;
+  background-color: #1a94b2 !important;
 }
 
 #top-posts:focus {
-    background-color: #1a94b2 !important;
+  background-color: #1a94b2 !important;
 }
 
 #top-posts:active {
-    background-color: #1a94b2 !important;
+  background-color: #1a94b2 !important;
 }
 
 .navbar-form input {
-    background-color: #3c4241;
-    border-color: #00A3CE;
+  background-color: #3c4241;
+  border-color: #00A3CE;
 }
 
 .navbar-form input:focus {
-    background-color: #3c4241;
-    border-color: #00A3CE;
-    color: white;
+  background-color: #3c4241;
+  border-color: #00A3CE;
+  color: white;
 }
 
 .navbar-form button {
-    background-color: #00A3CE;
-    border-color: #00A3CE;
-    color: white;
+  background-color: #00A3CE;
+  border-color: #00A3CE;
+  color: white;
 }
 
 .navbar-form button:hover {
-    background-color: #1a94b2;
-    border-color: white;
-    color: white;
+  background-color: #1a94b2;
+  border-color: white;
+  color: white;
 }
 
 .navbar-form button:active {
-    background-color: #1a94b2 !important;
-    border-color: white !important;
-    color: white!important;
+  background-color: #1a94b2 !important;
+  border-color: white !important;
+  color: white !important;
 }
 
 .dropdown-menu {
-    background-color: #323535;
+  background-color: #323535;
 }
 
 .collapsed {
-    background-color: #323535;
+  background-color: #323535;
 }
 
 .navbar-brand {
-    display: inline-block;
-    margin-top: -32px;
-
+  display: inline-block;
+  margin-top: -32px;
 }
 
-.navbar-brand img{
-    display: inline-block;
-    height:200%;
-    margin-top: -10px;
+.navbar-brand img {
+  display: inline-block;
+  height: 200%;
+  margin-top: -10px;
 }
 
 .navbar-brand h1 {
-    display: inline-block;
-    max-height: 100%;
+  display: inline-block;
+  max-height: 100%;
 }
 
 .navbar-default .navbar-toggle {
-    border-color: transparent;
+  border-color: transparent;
 }
 
 .navbar-default .navbar-toggle:hover {
-    background-color: #00A3CE;
-    border-color: white;
+  background-color: #00A3CE;
+  border-color: white;
 }
 
 .navbar-default .navbar-toggle:focus {
-    background-color: #00A3CE;
-    border-color: white;
+  background-color: #00A3CE;
+  border-color: white;
 }
 
 @media (max-width: 972px) {
   .navbar-header {
-      float: none;
+    float: none;
   }
-  .navbar-left,.navbar-right {
-      float: none !important;
+  .navbar-left, .navbar-right {
+    float: none !important;
   }
   .navbar-toggle {
-      display: block;
+    display: block;
   }
   .navbar-collapse {
-      border-top: 1px solid transparent;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    border-top: 1px solid transparent;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
   .navbar-fixed-top {
-      top: 0;
-      border-width: 0 0 1px;
+    top: 0;
+    border-width: 0 0 1px;
   }
   .navbar-collapse.collapse {
-      display: none!important;
+    display: none !important;
   }
   .navbar-nav {
-      float: none!important;
-      margin-top: 7.5px;
+    float: none !important;
+    margin-top: 7.5px;
   }
   .navbar-nav>li {
-      float: none;
+    float: none;
   }
   .navbar-nav>li>a {
-      padding-top: 10px;
-      padding-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
-  .collapse.in{
-      display:block !important;
+  .collapse.in {
+    display: block !important;
   }
 }
 
 #logoh1 {
-    font-family: Arial, Helvetica, sans-serif !important;
+  font-family: Arial, Helvetica, sans-serif !important;
 }
 
 /*not working*/
+
 #logo-beta {
-    font-size: 27px !important;
+  font-size: 27px !important;
 }
 
 .btn {
-    font-family: "Calibri";
-    text-decoration: none;
-    color: white;
-    text-align: center;
-    padding-top: 19;
-    font-size: 17;
-    white-space: nowrap
+  font-family: "Calibri";
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  padding-top: 19;
+  font-size: 17;
+  white-space: nowrap
 }
 
 .btn:hover {
-    background-color: #3c4241;
-    color: white;
+  background-color: #3c4241;
+  color: white;
 }
 
-#coolbtn{
-    border-radius: 5px;
-    border: solid;
-    border-color: #45600b;
-    background: #45600b;
-    padding: 7px 5px 9px 5px;
-    margin: 13px 12px 16px 10px;
+#coolbtn {
+  border-radius: 5px;
+  border: solid;
+  border-color: #45600b;
+  background: #45600b;
+  padding: 7px 5px 9px 5px;
+  margin: 13px 12px 16px 10px;
 }
 
 #coolbtn:hover {
-    background: #384c08;
-    border-color: #384c08;
+  background: #384c08;
+  border-color: #384c08;
 }
 
 #signUpAd {
-    font-size: 40px;
+  font-size: 40px;
 }
 
 #signUpAd:hover {
-    background-image: url("res/button-background.PNG");
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-color: white;
-    border-color: black;
-    color: black;
-    font-size: 40px;
+  background-image: url("res/button-background.PNG");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: white;
+  border-color: black;
+  color: black;
+  font-size: 40px;
 }
 
 #main {
-    margin: 100px 10%;
-    flex: 1 0 auto;
-    /* margin-bottom: -100px;
+  margin: 100px 10%;
+  flex: 1 0 auto;
+  /* margin-bottom: -100px;
     min-height: 100%; */
-    /* height: 100%; */
+  /* height: 100%; */
 }
 
 #footer {
-    display: grid;
-    grid-template-columns: 1fr 2fr 2fr 2fr;
-    color: white;
-    background-color: #323535;
-    width: 100%;
-    height: 15%;
-    justify-items: center;
-    /* max-height: 100px; */
-    flex-shrink: 0;
-    /* overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 2fr;
+  color: white;
+  background-color: #323535;
+  width: 100%;
+  height: 15%;
+  justify-items: center;
+  /* max-height: 100px; */
+  flex-shrink: 0;
+  /* overflow: hidden;
     position: absolute;
     bottom:0; */
-
 }
 
 #footerlogo {
-    width: 100px;
-    height: 100px;
-    border-radius: 500px;
-    padding: 10px;
-    padding-top: 20px;
+  width: 100px;
+  height: 100px;
+  border-radius: 500px;
+  padding: 10px;
+  padding-top: 20px;
 }
 
 #footer p {
-    font-size: 17;
-    color: darkgrey;
+  font-size: 17;
+  color: darkgrey;
 }
 
 #footer a {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
 }
 
 #footer a:hover {
-    color: #578D3B;
+  color: #578D3B;
 }
