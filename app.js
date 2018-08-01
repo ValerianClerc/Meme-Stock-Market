@@ -53,7 +53,7 @@ app.use(function (req, res, next) {
 app.use(indexRoutes);
 app.use('/posts', postRoutes);
 app.use(profileRoutes);
-app.use('/posts/:id/comments', commentRoutes);
+app.use('/posts/:id', commentRoutes);
 
 
 // MongoDB set-up

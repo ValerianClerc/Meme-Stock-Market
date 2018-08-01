@@ -48,11 +48,11 @@
                                 <p><strong><%= comment.author.username %></strong> -
                                   <%= comment.timeStamp %>
                                 </p>
-                                <%= if (comment.author.username == currentUser.username) { %>
-                                    <form action="/posts/<%= post._id %>/comments?_method=DELETE" method="POST">
-                                         <button>Delete!</button>
+                                <% if (typeof currentUser != 'undefined' && comment.author.username == currentUser.username) { %>
+                                    <form action="/posts/<%= post._id %>/<%=comment._id %>?_method=DELETE" method="POST">
+                                         <button type="submit">Delete!</button>
                                     </form>
-                                <%= } %>
+                                <% } %>
                                 <p>
                                   <%= comment.content %>
                                 </p>
