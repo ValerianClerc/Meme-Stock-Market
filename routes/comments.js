@@ -31,7 +31,7 @@ router.post('/', isLoggedIn, function (req, res) {
         } else {
             comment.post.id = post._id;
             post.comments.push(comment._id);
-            User.findOne({_id: post.author.id}, function (err, user) {
+            User.findOne({_id: comment.author.id}, function (err, user) {
                 if(err) {
                     console.log(err);
                 } else {
@@ -72,12 +72,10 @@ router.delete('/:commentId', isLoggedIn, function (req, res) {
                         if (index > -1) {
                             user.comments.splice(index, 1);
                         }
-                        console.log(index);
                         index = post.comments.indexOf(comment._id);
                         if (index > -1) {
                             post.comments.splice(index, 1);
                         }
-                        console.log(index);
                         user.save();
                         post.save();
                         // removing post from DB
