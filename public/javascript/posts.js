@@ -1,6 +1,6 @@
 $(function () {
     $('#grid').on('click', '#like', function () {
-        var $id = JSON.parse($('.data').attr('data-test-value'))._id;
+        var $id = JSON.parse($(this).parent().find('.data').attr('data-test-value'))._id;
         $(this).toggleClass('liked');
         $(this).toggleClass('not-liked');
         $.ajax({
