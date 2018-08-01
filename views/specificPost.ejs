@@ -26,6 +26,7 @@
                   <button id="delete" type="submit"></button>
                 </form>
                 <a href="/posts/<%= post._id%>/edit"><img id="edit" src="/css/res/edit-button.png"></a>
+                <p>Likes: <%= post.likes.total%></p>
                 <% } %>
                   <% if (typeof currentUser != 'undefined') { %>
                     <div class="addComment"><br>
