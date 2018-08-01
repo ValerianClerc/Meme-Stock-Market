@@ -22,10 +22,11 @@
                                 <button class="not-liked" id="not-liked"></button>
                             </form>
                         <% } else if (!post.likes.liker.some(function (el) { return el.equals(user._id)})) { %>
-                                <button class="not-liked"></button>
+                                <button class="not-liked" id="like"></button>
                         <% } else { %>
-                                <button class="liked"></button>
+                                <button class="liked" id="like"></button>
                         <% } %>
+                        <p id="likeCount">Likes: <span><%= post.likes.total%></span></p>
                         <a href="./posts/<%= post._id %>"><img id="read-more" src="/css/res/read-more.png"></a>
                          <span id="poster">By:&nbsp;<%= post.author.username %></span>
                         <p id="description"><%= post.description.substring(0, 100) %><%= post.description.length > 100 ? '...' : ''%></p> 
