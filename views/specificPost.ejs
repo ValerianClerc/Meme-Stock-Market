@@ -31,8 +31,6 @@
                     <div class="addComment"><br>
                       <h4>Add a comment below:</h4>
                       <form action="/posts/<%= post._id %>" method="POST">
-                        <input id="comment-title" type="text" name="title" placeholder="Title">
-                        <br>
                         <textarea id="comment-text" type="textarea" name="content" placeholder="Content" rows="4" cols="80"></textarea>
                         <br>
                         <button id="comment-button">Submit!</button>
