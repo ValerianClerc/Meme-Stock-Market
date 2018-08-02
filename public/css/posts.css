@@ -9,6 +9,7 @@ body {
 }
 
 #upload {
+  display: block;
   text-align: left;
   width: 65px;
   margin-top: auto;

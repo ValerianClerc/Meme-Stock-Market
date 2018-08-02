@@ -47,14 +47,14 @@
                                   <%= comment.timeStamp %>
                                 </p>
                                 <% if (typeof currentUser != 'undefined' && comment.author.username == currentUser.username) { %>
-                                    <form action="/posts/<%= post._id %>/<%=comment._id %>?_method=DELETE" method="POST">
-                                         <button type="submit">Delete!</button>
-                                    </form>
-                                <% } %>
-                                <p>
-                                  <%= comment.content %>
-                                </p>
-                                <hr>
+                                  <form action="/posts/<%= post._id %>/<%=comment._id %>?_method=DELETE" method="POST">
+                                    <button type="submit">Delete!</button>
+                                  </form>
+                                  <% } %>
+                                    <p>
+                                      <%= comment.content %>
+                                    </p>
+                                    <hr>
                               </li>
                             </div>
                             <% }); %>

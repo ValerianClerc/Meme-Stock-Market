@@ -1,15 +1,15 @@
 <% include partials/header %>
 
-    <div id="main">
+  <div id="main">
     <h1>This is where <%= user.username %>'s Profile will be </h1>
     <h2>Posts:</h2>
     <ul>
-        <% if (typeof user != 'undefined' || typeof posts != 'undefined') { %>
+      <% if (typeof user != 'undefined' || typeof posts != 'undefined') { %>
         <% posts.forEach(function (post) { %>
-            <li><img src="..<%= post.imgPath%>"></li>
-        <% }); %>
-        <% } %>
+          <li><img src="..<%= post.imgPath%>"></li>
+          <% }); %>
+            <% } %>
     </ul>
-    </div>
+  </div>
 
-<% include partials/footer %>
+  <% include partials/footer %>
