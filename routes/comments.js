@@ -15,6 +15,24 @@ function isLoggedIn(req, res, next) {
     res.redirect('/login');
 }
 
+function checkCommentOwnership(req, res, next) {
+    if(req.isAuthenticated()){
+        Comment.findById(req.params.commentId, function (err, foundComment) {
+            if(err) {
+                console.log(err);
+            } else {
+                if(foundComment.author.id.equals(req.user._id)) {
+                    next();
+                } else {
+                    res.redirect('/posts/' + foundComment.post._id);
+                }
+            }
+        });
+    } else {
+        res.redirect('/login');
+    }
+}
+
 // route to post 'new comment' form
 router.post('/', isLoggedIn, function (req, res) {
     var comment = new Comment({
@@ -46,24 +64,26 @@ router.post('/', isLoggedIn, function (req, res) {
     });
 });
 
-router.get('/:commentId', function (req, res) {
-    res.send("commentId ROUTE");
-    //res.render('commentEdit');
+router.get('/:commentId/edit', checkCommentOwnership, function (req, res) {
+    Comment.findOne({_id : req.params.commentId}, function (err, comment) {
+        res.render('editComment', {comment : comment});
+    });
 });
 
-router.put('/:commentId/edit', function (req, res) {
-
+router.put('/:commentId', checkCommentOwnership, function (req, res) {
+    Comment.findByIdAndUpdate(req.params.commentId, req.body.comment, function (err, comment) {
+        res.redirect('/posts/' + req.params.id);
+    });
 });
 
 // Delete request for comment
-router.delete('/:commentId', isLoggedIn, function (req, res) {
+router.delete('/:commentId', checkCommentOwnership, function (req, res) {
     // insert error handling
     Post.findOne({'_id' : req.params.id}, function (err, post) {
         if (err) {
             console.log(err);
         } else {
-        Comment.findOne({'_id' : req.params.commentId}, function (err, comment) {
-            if (comment.author.username == req.user.username) {
+            Comment.findOne({'_id' : req.params.commentId}, function (err, comment) {
                 User.findOne({'_id': comment.author.id}, function (err, user) {
                     if (err) {
                         console.log(err);
@@ -83,12 +103,8 @@ router.delete('/:commentId', isLoggedIn, function (req, res) {
                         res.redirect('/posts/'+ post._id);
                     }
                 });
-            }
-        });
-
+            });
         }
-           // make redirect to specific post
-           // return res.redirect('/posts');
     });
 });
 
