@@ -11,6 +11,23 @@ var User = require('../models/user'),
 
 //MIDDLEWARE
 
+function checkPostOwnership(req, res, next) {
+    if(req.isAuthenticated()){
+        Post.findById(req.params.id, function (err, foundPost) {
+            if(err) {
+                console.log(err);
+            } else {
+                if(foundPost.author.id.equals(req.user._id)) {
+                    next();
+                } else {
+                    res.redirect('/posts/' + foundPost._id);
+                }
+            }
+        });
+    } else {
+        res.redirect('/login');
+    }
+}
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
@@ -141,70 +158,47 @@ router.post('/:id/like', isLoggedIn, function (req, res) {
 });
 
 // Accessing edit form
-router.get('/:id/edit', isLoggedIn, function (req, res) {
+router.get('/:id/edit', checkPostOwnership, function (req, res) {
     Post.findOne({_id : req.params.id}, function (err, post) {
-        if (err) {
-            console.log(err);
-        } else {
-            User.findOne({_id : post.author.id}, function (err, user) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    if (req.user.username == user.username){
-                        res.render('editPost', {post : post, user : user});
-                    } else {
-                        res.render('specificPost', {post : post, user : user, msg : 'SORRY, YOU CAN\'T EDIT A POST THAT ISN\'T YOURS'})
-                    }
-                }
-            });
-        }
+        res.render('editPost', {post : post});
     });
 });
 
 // Put request for editing post
-router.put('/:id', isLoggedIn, function (req, res) {
+router.put('/:id', checkPostOwnership, function (req, res) {
     Post.findByIdAndUpdate(req.params.id, req.body.post, function (err, post) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.redirect('/posts/' + req.params.id);
-        }
-    })
+        res.redirect('/posts/' + req.params.id);
+    });
 });
 
 // Delete request for post
-router.delete('/:id', isLoggedIn, function (req, res) {
+router.delete('/:id', checkPostOwnership, function (req, res) {
     Post.findOne({'_id' : req.params.id}, function (err, post) {
-        if (post.author.username == req.user.username) {
-            // removing image from storage
-            var delPath = __dirname + post.imgPath;
-            delPath = delPath.replace('routes', 'public');
-            fs.unlink(delPath, function (err) {
-                if (err) {
-                    console.log(err);
-                    throw err;
-                } else {
-                    User.findOne({'_id': post.author.id}, function (err, user) {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            var index = user.posts.indexOf(post._id);
-                            if (index > -1) {
-                                user.posts.splice(index, 1);
-                            }
-                            user.save()
-                            // removing post from DB
-                            post.remove();
-                            res.redirect('/posts');
+        // removing image from storage
+        var delPath = __dirname + post.imgPath;
+        delPath = delPath.replace('routes', 'public');
+        fs.unlink(delPath, function (err) {
+            if (err) {
+                console.log(err);
+                throw err;
+            } else {
+                User.findOne({'_id': post.author.id}, function (err, user) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        var index = user.posts.indexOf(post._id);
+                        if (index > -1) {
+                            user.posts.splice(index, 1);
                         }
-                    });
+                        user.save()
+                        // removing post from DB
+                        post.remove();
+                        res.redirect('/posts');
+                    }
+                });
 
-                }
-            });
-
-        } else {
-            return res.redirect('/posts');
-        }
+            }
+        });
     });
 });
 
@@ -219,9 +213,6 @@ function toggleLike (post, req) {
     })) {
         console.log('unlike');
         post.likes.total--;
-        // post.likes.liker = post.likes.liker.filter(function (el) {
-        //     return .indexOf(req.user._id) === -1;
-        // })
         var index = post.likes.liker.indexOf(req.user._id);
         if (index > -1) {
             post.likes.liker.splice(index, 1);
