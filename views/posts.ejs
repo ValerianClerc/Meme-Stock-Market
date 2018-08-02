@@ -11,29 +11,32 @@
         <% posts.forEach(function (post) { %>
           <% if (post.imgPath != undefined) { %>
 
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                    <div class="zoom">
-                        <h3><%=post.title%></h3>
-                            <div class="data" data-test-value='<%= JSON.stringify(post) %>'></div>
-                                <a href="./posts/<%= post._id %>"><img id="image" class="" src="..<%= post.imgPath%>"></a>
-                    </div>
-                        <% if (typeof user== 'undefined') { %>
-                            <form action="./login">
-                                <button class="not-liked" id="not-liked"></button>
-                            </form>
-                        <% } else if (!post.likes.liker.some(function (el) { return el.equals(user._id)})) { %>
-                                <button class="not-liked" id="like"></button>
-                        <% } else { %>
-                                <button class="liked" id="like"></button>
-                        <% } %>
-                        <p id="likeCount">Likes: <span><%= post.likes.total%></span></p>
-                        <a href="./posts/<%= post._id %>"><img id="read-more" src="/css/res/read-more.png"></a>
-                         <span id="poster">By:&nbsp;<%= post.author.username %></span>
-                        <p id="description"><%= post.description.substring(0, 100) %><%= post.description.length > 100 ? '...' : ''%></p>
-                        </div>
-                <% } %>
-            <% }); %>
-        </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+              <div class="zoom">
+                <h3><%=post.title%></h3>
+                <div class="data" data-test-value='<%= JSON.stringify(post) %>'></div>
+                <a href="./posts/<%= post._id %>"><img id="image" class="" src="..<%= post.imgPath%>"></a>
+              </div>
+              <% if (typeof user== 'undefined') { %>
+                <form action="./login">
+                  <button class="not-liked" id="not-liked"></button>
+                </form>
+                <% } else if (!post.likes.liker.some(function (el) { return el.equals(user._id)})) { %>
+                  <button class="not-liked" id="like"></button>
+                  <% } else { %>
+                    <button class="liked" id="like"></button>
+                    <% } %>
+                      <a href="./posts/<%= post._id %>"><img id="read-more" src="/css/res/read-more.png"></a>
+                      <span id="poster">By:&nbsp;<%= post.author.username %></span>
+                      <p id="likeCount">Likes: <span><%= post.likes.total%></span></p>
+                      <p id="description">
+                        <%= post.description.substring(0, 100) %>
+                          <%= post.description.length > 100 ? '...' : ''%>
+                      </p>
+            </div>
+            <% } %>
+              <% }); %>
+      </div>
     </div>
   </div>
   <script type="text/javascript" src="/javascript/posts.js"></script>
