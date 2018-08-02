@@ -7,7 +7,7 @@
     <a href="/posts"><img id="back-button" src="/css/res/back-button.png"></a>
     <%= typeof msg != 'undefined' ? msg : '' %>
       <h3 id="title"><%=post.title%></h3>
-      <img id="post" src="../..<%= post.imgPath%>">
+      <img id="post" src="<%= post.imgPath%>">
       <p id="description">
         <%= post.description %>
       </p>

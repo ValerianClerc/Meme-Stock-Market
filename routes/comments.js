@@ -66,7 +66,9 @@ router.post('/', isLoggedIn, function (req, res) {
 
 router.get('/:commentId/edit', checkCommentOwnership, function (req, res) {
     Comment.findOne({_id : req.params.commentId}, function (err, comment) {
-        res.render('editComment', {comment : comment});
+        Post.findOne({_id : comment.post.id}, function (err, post) {
+            res.render('editComment', {comment : comment, post: post});
+        });
     });
 });
 

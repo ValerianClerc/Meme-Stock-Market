@@ -5,7 +5,7 @@
   <div id="main">
     <a href="/posts"><img id="back-button" src="/css/res/back-button.png"></a>
     <%= typeof msg != 'undefined' ? msg : '' %>
-      <img id="post" src="../..<%= post.imgPath%>">
+      <img id="post" src="<%= post.imgPath%>">
       <form action="/posts/<%= post.id %>?_method=PUT" method="post">
         <input id="title" type="text" name="post[title]" value="<%= post.title %>" placeholder="Title">
         <textarea id="description" type="textarea" name="post[description]" placeholder="Description" rows="8" cols="80"><%= post.description %></textarea>

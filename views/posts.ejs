@@ -3,7 +3,7 @@
   <link rel="stylesheet" href="/css/posts.css" type="text/css">
 
   <div id="main">
-    <a href="./posts/new"><img id="upload" src="/css/res/upload.png"></a>
+    <a href="/posts/new"><img id="upload" src="/css/res/upload.png"></a>
     <!--<%= typeof err != 'undefined' ? err : '' %> -->
     <div id="grid">
       <div class="row">
@@ -14,7 +14,7 @@
                     <div class="zoom">
                         <h3><%=post.title%></h3>
                         <div class="data" data-test-value='<%= JSON.stringify(post) %>'></div>
-                        <a href="./posts/<%= post._id %>"><img id="image" class="" src="..<%= post.imgPath%>"></a>
+                        <a href="/posts/<%= post._id %>"><img id="image" class="" src="..<%= post.imgPath%>"></a>
                     </div>
                         <% if (typeof user== 'undefined') { %>
                             <form action="./login">
@@ -26,7 +26,7 @@
                                 <button class="liked" id="like"></button>
                         <% } %>
                         <p id="likeCount">Likes: <span><%= post.likes.total%></span></p>
-                        <a href="./posts/<%= post._id %>"><img id="read-more" src="/css/res/read-more.png"></a>
+                        <a href="/posts/<%= post._id %>"><img id="read-more" src="/css/res/read-more.png"></a>
                          <span id="poster">By:&nbsp;<%= post.author.username %></span>
                         <p id="description"><%= post.description.substring(0, 100) %><%= post.description.length > 100 ? '...' : ''%></p>
                         </div>

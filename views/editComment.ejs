@@ -3,9 +3,10 @@
   <link rel="stylesheet" href="/css/editPost.css" type="text/css">
 
   <div id="main">
-    <a href="/posts/<%= comment.post._id %>"><img id="back-button" src="/css/res/back-button.png"></a>
+    <p><%= comment %>
+    <a href="/posts/<%= comment.post.id %>"><img id="back-button" src="/css/res/back-button.png"></a>
     <%= typeof msg != 'undefined' ? msg : '' %>
-      <img id="post" src="../..<%= comment.post.imgPath%>">
+      <img id="post" src="<%= post.imgPath%>">
       <form action="/posts/<%= comment.post.id %>/<%= comment._id %>?_method=PUT" method="post">
         <textarea id="description" type="textarea" name="comment[content]" placeholder="Content" rows="8" cols="80"><%= comment.content %></textarea>
         <button id="update">Update Comment</button>
