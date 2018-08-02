@@ -8,6 +8,9 @@ $(function () {
             url: '../posts/' + $id + '/like',
             error: function () {
                 alert('error');
+            },
+            success: function (response) {
+                $('#main #likeCount span').html(JSON.parse(response).total);
             }
         });
     });

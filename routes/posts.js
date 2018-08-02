@@ -131,7 +131,11 @@ router.post('/:id/like', isLoggedIn, function (req, res) {
             res.send('error?');
         } else {
             toggleLike(post, req);
-            res.redirect('/posts');
+            var likes = {
+                total : post.likes.total
+            }
+            res.end(JSON.stringify(likes));
+            //res.redirect('/posts');
         }
     });
 });

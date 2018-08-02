@@ -27,6 +27,7 @@
                 </form>
                 <a href="/posts/<%= post._id%>/edit"><img id="edit" src="/css/res/edit-button.png"></a>
                 <% } %>
+                <p id="likeCount">Likes: <span><%= post.likes.total%></span></p>
                   <% if (typeof currentUser != 'undefined') { %>
                     <div class="addComment"><br>
                       <h4>Add a comment below:</h4>
