@@ -27,7 +27,7 @@
                         <% } %>
                         <p id="likeCount">Likes: <span><%= post.likes.total%></span></p>
                         <a href="/posts/<%= post._id %>"><img id="read-more" src="/css/res/read-more.png"></a>
-                         <span id="poster">By:&nbsp;<%= post.author.username %></span>
+                         <p id="poster">By: <a href="/profile/<%= post.author.username %>"><%= post.author.username %></a></p>
                         <p id="description"><%= post.description.substring(0, 100) %><%= post.description.length > 100 ? '...' : ''%></p>
                         </div>
                 <% } %>

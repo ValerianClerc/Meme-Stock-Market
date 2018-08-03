@@ -7,6 +7,7 @@
     <a href="/posts"><img id="back-button" src="/css/res/back-button.png"></a>
     <%= typeof msg != 'undefined' ? msg : '' %>
       <h3 id="title"><%=post.title%></h3>
+      <h4>By: <a href="/profile/<%= post.author.username %>"><%= post.author.username %></a></h4>
       <img id="post" src="<%= post.imgPath%>">
       <p id="description">
         <%= post.description %>
@@ -44,7 +45,7 @@
                           <% comments.forEach(function(comment) { %>
                             <div class="comment">
                               <li>
-                                <p><strong><%= comment.author.username %></strong> -
+                                <p><a href="/profile/<%= comment.author.username %>"><strong><%= comment.author.username %></strong></a> -
                                   <%= comment.timeStamp %>
                                 </p>
                                 <% if (typeof currentUser != 'undefined' && comment.author.username == currentUser.username) { %>
