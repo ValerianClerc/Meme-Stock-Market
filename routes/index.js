@@ -52,7 +52,8 @@ router.post('/signup', function (req, res) {
     User.register(new User({
         username: req.body.username,
         email: req.body.email,
-        posts: []
+        posts: [],
+        sortBy: "top"
     }),
         req.body.password, function (err, user) {
         if (err) {
