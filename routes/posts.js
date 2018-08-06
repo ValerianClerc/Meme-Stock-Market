@@ -93,7 +93,6 @@ router.get('/', function (req, res) {
                     });
                 } else {
                     console.log('deprecated user');
-                    alert('Your user account has been deprecated. Make a new one.');
                     res.redirect('/signup');
                 }
             }

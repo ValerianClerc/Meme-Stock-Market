@@ -5,10 +5,10 @@
   <div id="main">
     <a href="/posts/new"><img id="upload" src="/css/res/upload.png"></a>
     <h4>Change filter order:</h4>
-    <form action="/posts/changeOrder?_method=PUT" method="post">
+    <form action="/profile/changeOrder?_method=PUT" method="post">
         <input name="filter" type="radio" value="top">Hottest</input>
         <input name="filter" type="radio" value="recent">Recent</input> 
-        <input type="submit">Filter!<input>
+        <input type="submit">Filter!</input>
     </form>
     <!--<%= typeof err != 'undefined' ? err : '' %> -->
     <div id="grid">
