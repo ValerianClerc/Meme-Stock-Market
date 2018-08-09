@@ -110,6 +110,49 @@ router.get('/', function (req, res) {
 
 });
 
+// Posts view
+router.get('/page/:page', function (req, res) {
+    if (req.user) {
+        User.findById({_id: req.user._id}, function (err, user) {
+            if(err) {
+                console.log(err);
+            } else {
+                console.log(user.sortBy);
+                if (user.sortBy == "top") {
+                    Post.find({}, null, {sort: {'likes.total': -1}}, function (err, posts) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            res.render('posts', {posts: posts, user : req.user});
+                        }
+                    });
+                } else if (user.sortBy == "recent") {
+                    Post.find({}, null, {sort: {timeStamp: -1}}, function (err, posts) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            res.render('posts', {posts: posts, user : req.user});
+                        }
+                    });
+                } else {
+                    console.log('deprecated user');
+                    res.redirect('/signup');
+                }
+            }
+       });
+    } else {
+        Post.find({}, null, {sort: {'likes.total': -1}}, function (err, posts) {
+            if (err) {
+                console.log(err);
+            } else {
+                // posts = posts.sort({timeStamp : -1});
+                res.render('posts', {posts: posts, user : req.user});
+            }
+        });
+    }
+
+});
+
 // route to get to 'new post' form
 router.get('/new', isLoggedIn, function (req, res) {
     res.render('newPost');

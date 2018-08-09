@@ -20,7 +20,7 @@
                     <div class="zoom">
                         <h3><%=post.title%></h3>
                         <div class="data" data-test-value='<%= JSON.stringify(post) %>'></div>
-                        <a href="/posts/<%= post._id %>"><img id="image" class="" src="..<%= post.imgPath%>"></a>
+                        <a href="/posts/<%= post._id %>"><img id="image" class="" src="<%= post.imgPath%>"></a>
                     </div>
                         <% if (typeof user== 'undefined') { %>
                             <form action="./login">
