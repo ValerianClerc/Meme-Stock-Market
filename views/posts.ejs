@@ -4,41 +4,53 @@
 
   <div id="main">
     <a href="/posts/new"><img id="upload" src="/css/res/upload.png"></a>
-    <h4>Change filter order:</h4>
-    <form action="/profile/changeOrder?_method=PUT" method="post">
-        <input name="filter" type="radio" value="top">Hottest</input>
-        <input name="filter" type="radio" value="recent">Recent</input> 
-        <input type="submit">Filter!</input>
-    </form>
+      <div class="dropdown" id="sort">
+        <a role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Filter order
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <form action="/profile/changeOrder?_method=PUT" method="post">
+            <input class="sort-item" name="filter" type="radio" value="top">Hottest</input> &nbsp;
+            <input class="sort-item" name="filter" type="radio" value="recent">Recent</input>
+            <input id="sort-button" type="submit" value="Filter"></input>
+          </form>
+        </div>
+      </div>
     <!--<%= typeof err != 'undefined' ? err : '' %> -->
     <div id="grid">
       <div class="row">
-
         <% posts.forEach(function (post) { %>
           <% if (post.imgPath != undefined) { %>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                    <div class="zoom">
-                        <h3><%=post.title%></h3>
-                        <div class="data" data-test-value='<%= JSON.stringify(post) %>'></div>
-                        <a href="/posts/<%= post._id %>"><img id="image" class="" src="<%= post.imgPath%>"></a>
-                    </div>
-                        <% if (typeof user== 'undefined') { %>
-                            <form action="./login">
-                                <button class="not-liked" id="not-liked"></button>
-                            </form>
-                        <% } else if (!post.likes.liker.some(function (el) { return el.equals(user._id)})) { %>
-                                <button class="not-liked" id="like"></button>
-                        <% } else { %>
-                                <button class="liked" id="like"></button>
-                        <% } %>
-                        <p id="likeCount">Likes: <span><%= post.likes.total%></span></p>
-                        <a href="/posts/<%= post._id %>"><img id="read-more" src="/css/res/read-more.png"></a>
-                         <p id="poster">By: <a href="/profile/<%= post.author.username %>"><%= post.author.username %></a></p>
-                        <p id="description"><%= post.description.substring(0, 100) %><%= post.description.length > 100 ? '...' : ''%></p>
-                        </div>
-                <% } %>
-            <% }); %>
-        </div>
+           <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+              <div class="zoom">
+                <h3><%=post.title%></h3>
+                <div class="data" data-test-value='<%= JSON.stringify(post) %>'></div>
+                <a href="/posts/<%= post._id %>"><img id="image" class="" src="<%= post.imgPath%>"></a>
+              </div>
+              <% if (typeof user== 'undefined') { %>
+                <form action="./login">
+                  <button class="not-liked" id="not-liked"></button>
+                </form>
+                <% } else if (!post.likes.liker.some(function (el) { return el.equals(user._id)})) { %>
+                  <button class="not-liked" id="like"></button>
+                  <% } else { %>
+                    <button class="liked" id="like"></button>
+                    <% } %>
+                      <a href="/posts/<%= post._id %>"><img id="read-more" src="/css/res/read-more.png"></a>
+                      <span id="poster">By:
+                        <a href="/profile/<%= post.author.username %>">
+                          <%= post.author.username %>
+                        </a>
+                      </span>
+                      <p id="likeCount"><span><%= post.likes.total%></span></p>
+                      <p id="description">
+                        <%= post.description.substring(0, 100) %>
+                          <%= post.description.length > 100 ? '...' : ''%>
+                      </p>
+            </div>
+            <% } %>
+              <% }); %>
+      </div>
     </div>
   </div>
   <script type="text/javascript" src="/javascript/posts.js"></script>
