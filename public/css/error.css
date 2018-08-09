@@ -1,0 +1,52 @@
+#main h1 {
+  color: #00A3CE;
+}
+
+#gif {
+  border:solid;
+  border-radius:50px;
+  border-color:#00A3CE;
+  border-width:thick;
+}
+
+#main input {
+  background-color: #3c4241;
+  border-color: #00A3CE;
+  border-width: 2px;
+  width: 70%;
+  display: inline;
+}
+
+#main input:focus {
+  background-color: #3c4241;
+  border-color: #00A3CE;
+  color: white;
+}
+
+#main button {
+  background-color: #00A3CE;
+  border-color: #00A3CE;
+  color: white;
+  display: inline;
+}
+
+#main button:hover {
+  background-color: #1a94b2;
+  border-color: white;
+  color: white;
+}
+
+#main button:active {
+  background-color: #1a94b2 !important;
+  border-color: white !important;
+  color: white !important;
+}
+
+#links ul {
+  list-style-type: none;
+}
+
+#links li a {
+  text-decoration: none;
+  color: #00A3CE;
+}
