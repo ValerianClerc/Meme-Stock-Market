@@ -13,7 +13,7 @@ body {
   text-align: left;
   width: 65px;
   margin-top: auto;
-  margin-bottom: 3%;
+  margin-bottom: 2%;
   margin-left: 3%;
   transition: transform .3s;
 }
@@ -122,6 +122,55 @@ body {
   color: #00A3CE;
   padding-left: 3%;
   font-size: 140%;
+}
+
+#poster a {
+  text-decoration: none;
+  color: #00A3CE;
+}
+
+#sort {
+  color: #FFFFFF;
+  background-color: #3c4241;
+  border: solid #00A3CE;
+  display: inline-block;
+  width: auto;
+  margin-bottom: 3%;
+  margin-left: 3%;
+  padding: 7px 12px;
+  border-radius: 15px;
+}
+
+#sort:hover {
+  background-color: #494f4f;
+}
+
+#sort a {
+  text-decoration: none;
+  color: #FFFFFF;
+  border-radius: 15px;
+}
+
+#sort .dropdown-menu {
+  background: #3c4241;
+  padding-left: 7%;
+  border-color: #00A3CE;
+  border-width: 2px;;
+}
+
+#sort .sort-item {
+  margin-bottom: 10%;
+}
+
+#sort #sort-button{
+  background: #00A3CE;
+  border-color: #00A3CE;
+}
+
+#likeCount {
+  padding-left: 11%;
+  padding-top: 1%;
+  font-size: 10px;
 }
 
 /*@media (max-width: 968px) {
