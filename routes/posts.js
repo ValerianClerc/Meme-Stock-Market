@@ -111,7 +111,10 @@ router.get('/', function (req, res) {
 });
 
 // Posts view
-router.get('/page/:page', function (req, res) {
+router.get('/page/:page', function (req, res, next) {
+    var perPage = 12;
+    var page = req.params.page || 1;
+
     if (req.user) {
         User.findById({_id: req.user._id}, function (err, user) {
             if(err) {
@@ -119,13 +122,25 @@ router.get('/page/:page', function (req, res) {
             } else {
                 console.log(user.sortBy);
                 if (user.sortBy == "top") {
-                    Post.find({}, null, {sort: {'likes.total': -1}}, function (err, posts) {
+                    Post.find({}, null, {sort: {'likes.total': -1}}).skip((perPage * page) - perPage).limit(perPage).exec(function (err, posts) {
+                        Post.count().exec(function (err, count) {
+                            if (err) {
+                                return next(err);
+                            }
+                            res.render('posts', {
+                                posts: posts,
+                                current: page,
+                                pages: Math.ceil(count/perPage)
+                            });
+                        });
+                    });
+                    /*Post.find({}, null, {sort: {'likes.total': -1}}, function (err, posts) {
                         if (err) {
                             console.log(err);
                         } else {
                             res.render('posts', {posts: posts, user : req.user});
                         }
-                    });
+                    });*/
                 } else if (user.sortBy == "recent") {
                     Post.find({}, null, {sort: {timeStamp: -1}}, function (err, posts) {
                         if (err) {
