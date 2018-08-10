@@ -6,8 +6,8 @@
     <div class="data" data-test-value='<%= JSON.stringify(post) %>'></div>
     <a href="/posts"><img id="back-button" src="/css/res/back-button.png"></a>
     <%= typeof msg != 'undefined' ? msg : '' %>
-      <h3 id="title"><%=post.title%></h3>
       <h4>By: <a href="/profile/<%= post.author.username %>"><%= post.author.username %></a></h4>
+      <h3 id="title"><%=post.title%></h3>
       <img id="post" src="<%= post.imgPath%>">
       <p id="description">
         <%= post.description %>

@@ -17,7 +17,14 @@
 #title {
   font-size: 300%;
   margin-bottom: 3%;
-  margin-left: 1%;
+  border: solid;
+  border-color: #00A3CE;
+  border-radius: 15px;
+  width: 50%;
+  min-width: 200px;
+  background-color: #00A3CE;
+  color: #FFFFFF;
+  text-align: center;
 }
 
 @media (max-width: 500px) {
